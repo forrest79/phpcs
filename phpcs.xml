@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<ruleset name="Forrest79CodingStandard">
+	<rule ref="./Forrest79CodingStandard/ruleset.xml"/>
+
+	<rule ref="Forrest79CodingStandard.Classes.ForceFinalClass.MissingFinal">
+		<exclude-pattern>Forrest79CodingStandard/*</exclude-pattern>
+	</rule>
+
+	<rule ref="PSR1.Files.SideEffects.FoundWithSymbols">
+		<exclude-pattern>tests/*</exclude-pattern>
+	</rule>
+
+	<rule ref="SlevomatCodingStandard.Classes.ModernClassNameReference.ClassNameReferencedViaFunctionCall">
+		<exclude-pattern>tests/Sniffs/TestCase.php</exclude-pattern>
+	</rule>
+
+	<rule ref="SlevomatCodingStandard.Files.TypeNameMatchesFileName">
+		<properties>
+			<property name="rootNamespaces" type="array" value="
+				Forrest79CodingStandard=>Forrest79CodingStandard,
+				tests=>Forrest79CodingStandard,
+			"/>
+		</properties>
+	</rule>
+
+	<!-- PHP 8.0 -->
+	<rule ref="SlevomatCodingStandard.Functions.RequireTrailingCommaInDeclaration.MissingTrailingComma">
+		<exclude-pattern>tests/Sniffs/TestCase.php</exclude-pattern>
+	</rule>
+
+	<rule ref="SlevomatCodingStandard.Functions.UnusedParameter.UnusedParameter">
+		<exclude-pattern>Forrest79CodingStandard/Sniffs/NamingConventions/ValidVariableNameSniff.php</exclude-pattern>
+		<exclude-pattern>tests/Sniffs/TestCase.php</exclude-pattern>
+	</rule>
+</ruleset>

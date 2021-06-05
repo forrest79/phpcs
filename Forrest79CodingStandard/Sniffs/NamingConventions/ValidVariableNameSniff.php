@@ -1,14 +1,17 @@
 <?php declare(strict_types=1);
 
-namespace Consistence\Sniffs\NamingConventions;
+namespace Forrest79CodingStandard\Sniffs\NamingConventions;
 
 use PHP_CodeSniffer;
 
+/**
+ * @author https://github.com/consistence/coding-standard
+ */
 final class ValidVariableNameSniff extends PHP_CodeSniffer\Sniffs\AbstractVariableSniff
 {
 	public const CODE_CAMEL_CAPS = 'NotCamelCaps';
 
-	/** @var string[] */
+	/** @var array<string> */
 	private static array $phpReservedVariables = [
 		'_SERVER',
 		'_GET',
@@ -23,23 +26,23 @@ final class ValidVariableNameSniff extends PHP_CodeSniffer\Sniffs\AbstractVariab
 
 
 	/**
-	 * @param int $stackPointer position of the double quoted string
+	 * @inheritDoc
 	 */
 	protected function processVariable(PHP_CodeSniffer\Files\File $file, $stackPointer): void
 	{
 		$tokens = $file->getTokens();
 		$varName = ltrim($tokens[$stackPointer]['content'], '$');
 
-		if (in_array($varName, self::$phpReservedVariables, true)) {
+		if (in_array($varName, self::$phpReservedVariables, TRUE)) {
 			return; // skip PHP reserved vars
 		}
 
-		$objOperator = $file->findPrevious([T_WHITESPACE], ($stackPointer - 1), null, true);
+		$objOperator = $file->findPrevious([T_WHITESPACE], ($stackPointer - 1), NULL, TRUE);
 		if ($tokens[$objOperator]['code'] === T_DOUBLE_COLON) {
 			return; // skip MyClass::$variable, there might be no control over the declaration
 		}
 
-		if (!PHP_CodeSniffer\Util\Common::isCamelCaps($varName, false, true, false)) {
+		if (!PHP_CodeSniffer\Util\Common::isCamelCaps($varName, FALSE, TRUE, FALSE)) {
 			$error = 'Variable "%s" is not in valid camel caps format';
 			$data = [$varName];
 			$file->addError($error, $stackPointer, self::CODE_CAMEL_CAPS, $data);
@@ -48,7 +51,7 @@ final class ValidVariableNameSniff extends PHP_CodeSniffer\Sniffs\AbstractVariab
 
 
 	/**
-	 * @param int $stackPointer position of the double quoted string
+	 * @inheritDoc
 	 */
 	protected function processMemberVar(PHP_CodeSniffer\Files\File $file, $stackPointer): void
 	{
@@ -57,7 +60,7 @@ final class ValidVariableNameSniff extends PHP_CodeSniffer\Sniffs\AbstractVariab
 
 
 	/**
-	 * @param int $stackPointer position of the double quoted string
+	 * @inheritDoc
 	 */
 	protected function processVariableInString(PHP_CodeSniffer\Files\File $file, $stackPointer): void
 	{

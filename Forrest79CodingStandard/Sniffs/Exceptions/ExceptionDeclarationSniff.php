@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace Consistence\Sniffs\Exceptions;
+namespace Forrest79CodingStandard\Sniffs\Exceptions;
 
 use PHP_CodeSniffer;
 use SlevomatCodingStandard\Helpers\ClassHelper;
@@ -8,17 +8,20 @@ use SlevomatCodingStandard\Helpers\FunctionHelper;
 use SlevomatCodingStandard\Helpers\StringHelper;
 use SlevomatCodingStandard\Helpers\TokenHelper;
 
+/**
+ * @author https://github.com/consistence/coding-standard
+ */
 final class ExceptionDeclarationSniff implements PHP_CodeSniffer\Sniffs\Sniff
 {
 	public const CODE_NOT_ENDING_WITH_EXCEPTION = 'NotEndingWithException';
 	public const CODE_NOT_CHAINABLE = 'NotChainable';
 	public const CODE_INCORRECT_EXCEPTION_DIRECTORY = 'IncorrectExceptionDirectory';
 
-	public string $exceptionsDirectoryName = 'exceptions';
+	public string $exceptionsDirectoryName = 'Exceptions';
 
 
 	/**
-	 * @return int[]
+	 * @inheritDoc
 	 */
 	public function register(): array
 	{
@@ -30,12 +33,12 @@ final class ExceptionDeclarationSniff implements PHP_CodeSniffer\Sniffs\Sniff
 
 
 	/**
-	 * @param int $classPointer
+	 * @inheritDoc
 	 */
 	public function process(PHP_CodeSniffer\Files\File $file, $classPointer): void
 	{
 		$extendedClassName = $file->findExtendedClassName($classPointer);
-		if ($extendedClassName === false) {
+		if ($extendedClassName === FALSE) {
 			return; //does not extend anything
 		}
 
@@ -89,7 +92,7 @@ final class ExceptionDeclarationSniff implements PHP_CodeSniffer\Sniffs\Sniff
 	private function checkThatExceptionIsChainable(PHP_CodeSniffer\Files\File $file, int $classPointer): void
 	{
 		$constructorPointer = $this->findConstructorMethodPointer($file, $classPointer);
-		if ($constructorPointer === null) {
+		if ($constructorPointer === NULL) {
 			return;
 		}
 
@@ -104,7 +107,7 @@ final class ExceptionDeclarationSniff implements PHP_CodeSniffer\Sniffs\Sniff
 		}
 		$lastArgument = array_pop($typeHints);
 
-		if ($lastArgument === null) {
+		if ($lastArgument === NULL) {
 			$file->addError(
 				'Exception is not chainable. It must have optional \Throwable as last constructor argument and has none.',
 				$constructorPointer,
@@ -114,7 +117,7 @@ final class ExceptionDeclarationSniff implements PHP_CodeSniffer\Sniffs\Sniff
 		}
 
 		if (
-			$lastArgument->getTypeHint() !== '\Throwable'
+			ltrim($lastArgument->getTypeHint(), '?') !== '\Throwable'
 			&& !StringHelper::endsWith($lastArgument->getTypeHint(), 'Exception')
 			&& !StringHelper::endsWith($lastArgument->getTypeHint(), 'Error')
 		) {
@@ -130,14 +133,14 @@ final class ExceptionDeclarationSniff implements PHP_CodeSniffer\Sniffs\Sniff
 	private function findConstructorMethodPointer(PHP_CodeSniffer\Files\File $file, int $classPointer): ?int
 	{
 		$functionPointerToScan = $classPointer;
-		while (($functionPointer = TokenHelper::findNext($file, T_FUNCTION, $functionPointerToScan)) !== null) {
+		while (($functionPointer = TokenHelper::findNext($file, T_FUNCTION, $functionPointerToScan)) !== NULL) {
 			$functionName = FunctionHelper::getName($file, $functionPointer);
 			if ($functionName === '__construct') {
 				return $functionPointer;
 			}
 			$functionPointerToScan = $functionPointer + 1;
 		}
-		return null;
+		return NULL;
 	}
 
 }

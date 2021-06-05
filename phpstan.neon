@@ -4,3 +4,8 @@ includes:
 
 parameters:
 	level: max
+	excludePaths:
+		- tests/*/data/*
+	bootstrapFiles:
+		- %rootDir%/../../squizlabs/php_codesniffer/autoload.php
+		- %rootDir%/../../squizlabs/php_codesniffer/src/Util/Tokens.php
