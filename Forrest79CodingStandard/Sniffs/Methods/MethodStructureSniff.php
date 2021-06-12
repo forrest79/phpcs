@@ -12,7 +12,7 @@ final class MethodStructureSniff implements PHP_CodeSniffer\Sniffs\Sniff
 	public const CODE_ALPHABETICAL_ORDER = 'AlphabeticalOrder';
 
 	/** @var array<string> */
-	public array $checkFiles = [];
+	public $checkFiles = [];
 
 
 	/**

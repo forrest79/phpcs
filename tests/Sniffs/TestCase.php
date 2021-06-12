@@ -16,7 +16,7 @@ abstract class TestCase extends Tester\TestCase
 
 		Tester\Environment::setup();
 
-		if (defined('PHP_CODESNIFFER_CBF') === FALSE) {
+		if (!defined('PHP_CODESNIFFER_CBF')) {
 			define('PHP_CODESNIFFER_CBF', FALSE);
 		}
 
@@ -86,7 +86,7 @@ abstract class TestCase extends Tester\TestCase
 				'',
 				'',
 			],
-			$this->getSniffClassName(),
+			$this->getSniffClassName()
 		);
 	}
 
@@ -108,7 +108,7 @@ abstract class TestCase extends Tester\TestCase
 
 		Tester\Assert::true(
 			isset($errors[$line]),
-			sprintf('Expected error on line %s, but none occurred', $line),
+			sprintf('Expected error on line %s, but none occurred', $line)
 		);
 
 		$expectedCode = $this->getSniffName() . '.' . $code;
@@ -123,8 +123,8 @@ abstract class TestCase extends Tester\TestCase
 				PHP_EOL,
 				PHP_EOL,
 				$this->getFormattedErrorsOnLine($errors, $line),
-				PHP_EOL,
-			),
+				PHP_EOL
+			)
 		);
 	}
 
@@ -160,8 +160,8 @@ abstract class TestCase extends Tester\TestCase
 				$line,
 				PHP_EOL,
 				$this->getFormattedErrorsOnLine($errors, $line),
-				PHP_EOL,
-			),
+				PHP_EOL
+			)
 		);
 	}
 
@@ -176,7 +176,7 @@ abstract class TestCase extends Tester\TestCase
 			PHP_EOL,
 			PHP_EOL,
 			$this->getFormattedErrorsForFile($errorsForFile),
-			PHP_EOL,
+			PHP_EOL
 		));
 	}
 
@@ -193,7 +193,7 @@ abstract class TestCase extends Tester\TestCase
 				$line,
 				PHP_EOL,
 				$this->getFormattedErrorsOnLine($errorsForFile, $line),
-				PHP_EOL,
+				PHP_EOL
 			);
 		}
 

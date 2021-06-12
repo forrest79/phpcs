@@ -13,7 +13,7 @@ final class FinalInjectMethodSniff implements PHP_CodeSniffer\Sniffs\Sniff
 	public const CODE_MISSING_FINAL = 'MissingFinal';
 
 	/** @var array<bool> */
-	private array $isFinalClasses = [];
+	private $isFinalClasses = [];
 
 
 	/**

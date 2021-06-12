@@ -19,7 +19,7 @@ final class ExceptionDeclarationSniffTest extends Sniffs\TestCase
 			$resultFile,
 			5,
 			ExceptionDeclarationSniff::CODE_NOT_ENDING_WITH_EXCEPTION,
-			'Exception class name "InvalidExceptionName" must end with "Exception".',
+			'Exception class name "InvalidExceptionName" must end with "Exception".'
 		);
 	}
 
@@ -64,7 +64,7 @@ final class ExceptionDeclarationSniffTest extends Sniffs\TestCase
 			$resultFile,
 			5,
 			ExceptionDeclarationSniff::CODE_NOT_ENDING_WITH_EXCEPTION,
-			'Exception class name "AbstractExceptionWithInvalidName" must end with "Exception".',
+			'Exception class name "AbstractExceptionWithInvalidName" must end with "Exception".'
 		);
 	}
 
@@ -129,7 +129,7 @@ final class ExceptionDeclarationSniffTest extends Sniffs\TestCase
 			$resultFile,
 			5,
 			ExceptionDeclarationSniff::CODE_NOT_ENDING_WITH_EXCEPTION,
-			'Exception class name "InterfaceThatExtendsExceptionIncorrectName" must end with "Exception".',
+			'Exception class name "InterfaceThatExtendsExceptionIncorrectName" must end with "Exception".'
 		);
 	}
 
@@ -144,7 +144,7 @@ final class ExceptionDeclarationSniffTest extends Sniffs\TestCase
 			$resultFile,
 			8,
 			ExceptionDeclarationSniff::CODE_NOT_CHAINABLE,
-			'Exception is not chainable. It must have optional \Throwable as last constructor argument.',
+			'Exception is not chainable. It must have optional \Throwable as last constructor argument.'
 		);
 	}
 
@@ -189,7 +189,7 @@ final class ExceptionDeclarationSniffTest extends Sniffs\TestCase
 			$resultFile,
 			8,
 			ExceptionDeclarationSniff::CODE_NOT_CHAINABLE,
-			'Exception is not chainable. It must have optional \Throwable as last constructor argument and has "string".',
+			'Exception is not chainable. It must have optional \Throwable as last constructor argument and has "string".'
 		);
 	}
 
@@ -204,7 +204,7 @@ final class ExceptionDeclarationSniffTest extends Sniffs\TestCase
 			$resultFile,
 			8,
 			ExceptionDeclarationSniff::CODE_NOT_CHAINABLE,
-			'Exception is not chainable. It must have optional \Throwable as last constructor argument and has none.',
+			'Exception is not chainable. It must have optional \Throwable as last constructor argument and has none.'
 		);
 	}
 
@@ -229,7 +229,7 @@ final class ExceptionDeclarationSniffTest extends Sniffs\TestCase
 			$resultFile,
 			5,
 			ExceptionDeclarationSniff::CODE_INCORRECT_EXCEPTION_DIRECTORY,
-			'Exception file "ValidNameException.php" must be placed in "exceptions" directory (is in "data").',
+			'Exception file "ValidNameException.php" must be placed in "exceptions" directory (is in "data").'
 		);
 	}
 
@@ -244,7 +244,7 @@ final class ExceptionDeclarationSniffTest extends Sniffs\TestCase
 			$resultFile,
 			5,
 			ExceptionDeclarationSniff::CODE_INCORRECT_EXCEPTION_DIRECTORY,
-			'Exception file "ValidNameException.php" must be placed in "Data" directory (is in "data").',
+			'Exception file "ValidNameException.php" must be placed in "Data" directory (is in "data").'
 		);
 	}
 

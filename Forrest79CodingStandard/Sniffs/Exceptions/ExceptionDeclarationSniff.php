@@ -17,7 +17,8 @@ final class ExceptionDeclarationSniff implements PHP_CodeSniffer\Sniffs\Sniff
 	public const CODE_NOT_CHAINABLE = 'NotChainable';
 	public const CODE_INCORRECT_EXCEPTION_DIRECTORY = 'IncorrectExceptionDirectory';
 
-	public string $exceptionsDirectoryName = 'Exceptions';
+	/** @var string */
+	public $exceptionsDirectoryName = 'Exceptions';
 
 
 	/**
@@ -60,7 +61,7 @@ final class ExceptionDeclarationSniff implements PHP_CodeSniffer\Sniffs\Sniff
 		if (!StringHelper::endsWith($className, 'Exception')) {
 			$file->addError(sprintf(
 				'Exception class name "%s" must end with "Exception".',
-				$className,
+				$className
 			), $classPointer, self::CODE_NOT_ENDING_WITH_EXCEPTION);
 		}
 	}
@@ -83,7 +84,7 @@ final class ExceptionDeclarationSniff implements PHP_CodeSniffer\Sniffs\Sniff
 				'Exception file "%s" must be placed in "%s" directory (is in "%s").',
 				$pathInfo['basename'],
 				$this->exceptionsDirectoryName,
-				$exceptionDirectoryName,
+				$exceptionDirectoryName
 			), $classPointer, self::CODE_INCORRECT_EXCEPTION_DIRECTORY);
 		}
 	}
@@ -101,7 +102,7 @@ final class ExceptionDeclarationSniff implements PHP_CodeSniffer\Sniffs\Sniff
 			$file->addError(
 				'Exception is not chainable. It must have optional \Throwable as last constructor argument.',
 				$constructorPointer,
-				self::CODE_NOT_CHAINABLE,
+				self::CODE_NOT_CHAINABLE
 			);
 			return;
 		}
@@ -111,7 +112,7 @@ final class ExceptionDeclarationSniff implements PHP_CodeSniffer\Sniffs\Sniff
 			$file->addError(
 				'Exception is not chainable. It must have optional \Throwable as last constructor argument and has none.',
 				$constructorPointer,
-				self::CODE_NOT_CHAINABLE,
+				self::CODE_NOT_CHAINABLE
 			);
 			return;
 		}
@@ -123,7 +124,7 @@ final class ExceptionDeclarationSniff implements PHP_CodeSniffer\Sniffs\Sniff
 		) {
 			$file->addError(sprintf(
 				'Exception is not chainable. It must have optional \Throwable as last constructor argument and has "%s".',
-				$lastArgument->getTypeHint(),
+				$lastArgument->getTypeHint()
 			), $constructorPointer, self::CODE_NOT_CHAINABLE);
 			return;
 		}

@@ -33,7 +33,7 @@ final class ForceFinalClassSniffTest extends Sniffs\TestCase
 			$resultFile,
 			5,
 			ForceFinalClassSniff::CODE_MISSING_FINAL,
-			'All classes which are not extended must be final.',
+			'All classes which are not extended must be final.'
 		);
 	}
 

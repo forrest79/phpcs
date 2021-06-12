@@ -28,7 +28,7 @@ final class MethodStructureSniffTest extends Sniffs\TestCase
 		$this->assertSniffError(
 			$resultFile,
 			1,
-			MethodStructureSniff::CODE_ALPHABETICAL_ORDER,
+			MethodStructureSniff::CODE_ALPHABETICAL_ORDER
 		);
 	}
 

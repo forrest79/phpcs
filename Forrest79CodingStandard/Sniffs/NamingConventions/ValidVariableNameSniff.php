@@ -12,7 +12,7 @@ final class ValidVariableNameSniff extends PHP_CodeSniffer\Sniffs\AbstractVariab
 	public const CODE_CAMEL_CAPS = 'NotCamelCaps';
 
 	/** @var array<string> */
-	private static array $phpReservedVariables = [
+	private static $phpReservedVariables = [
 		'_SERVER',
 		'_GET',
 		'_POST',
