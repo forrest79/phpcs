@@ -13,7 +13,7 @@ final class FinalInjectMethodSniff implements PHP_CodeSniffer\Sniffs\Sniff
 	public const CODE_MISSING_FINAL = 'MissingFinal';
 
 	/** @var array<bool> */
-	private $isFinalClasses = [];
+	private $isFinalClass = [];
 
 
 	/**
@@ -55,20 +55,20 @@ final class FinalInjectMethodSniff implements PHP_CodeSniffer\Sniffs\Sniff
 
 	private function isFinalClass(PHP_CodeSniffer\Files\File $phpcsFile): bool
 	{
-		if (!isset($this->isFinalClasses[$phpcsFile->getFilename()])) {
+		if (!isset($this->isFinalClass[$phpcsFile->getFilename()])) {
 			$tokens = $phpcsFile->getTokens();
 			foreach ($tokens as $stackPointer => $token) {
 				if ($token['code'] === T_CLASS) {
 					$previous = $phpcsFile->findPrevious(Tokens::$methodPrefixes, $stackPointer - 1);
 
-					return $this->isFinalClasses[$phpcsFile->getFilename()] = ($previous !== FALSE && $tokens[$previous]['code'] === T_FINAL);
+					return $this->isFinalClass[$phpcsFile->getFilename()] = ($previous !== FALSE && $tokens[$previous]['code'] === T_FINAL);
 				}
 			}
 
-			return $this->isFinalClasses[$phpcsFile->getFilename()] = FALSE;
+			return $this->isFinalClass[$phpcsFile->getFilename()] = FALSE;
 		}
 
-		return $this->isFinalClasses[$phpcsFile->getFilename()];
+		return $this->isFinalClass[$phpcsFile->getFilename()];
 	}
 
 }
