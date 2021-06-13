@@ -3,7 +3,7 @@
 	"description": "Forrest79 - PHP Coding Standard - PHP Code Sniffer rules",
 	"keywords": ["coding standard", "cs", "coding", "standard", "ruleset", "phpcs", "PHPCodeSniffer", "CodeSniffer", "sniffer"],
 	"type": "library",
-	"license": "BSD-3-Clause",
+	"license": "(BSD-3-Clause and MIT)",
 	"authors": [
 		{
 			"name": "Jakub Trmota",
