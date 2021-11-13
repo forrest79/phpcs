@@ -64,7 +64,7 @@ final class ParentCallSniff implements PHP_CodeSniffer\Sniffs\Sniff
 
 
 	/**
-	 * @param array<int, array<string, mixed>> $tokens
+	 * @param array<int, array{code: string|int, content: string}> $tokens
 	 */
 	private function hasParentCallTokens(array $tokens, int $stackPointer, string $method): bool
 	{

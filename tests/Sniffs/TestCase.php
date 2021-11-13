@@ -130,7 +130,7 @@ abstract class TestCase extends Tester\TestCase
 
 
 	/**
-	 * @param array<array<array<mixed>>> $errorsForLine
+	 * @param array<array<array{source: string, message: string}>> $errorsForLine
 	 */
 	private function hasError(iterable $errorsForLine, string $code, ?string $message = NULL): bool
 	{
@@ -182,7 +182,7 @@ abstract class TestCase extends Tester\TestCase
 
 
 	/**
-	 * @param array<array<array<array<mixed>>>> $errorsForFile
+	 * @param array<array<array<array{source: string, message: string}>>> $errorsForFile
 	 */
 	private function getFormattedErrorsForFile(array $errorsForFile): string
 	{
@@ -202,7 +202,7 @@ abstract class TestCase extends Tester\TestCase
 
 
 	/**
-	 * @param array<array<array<array<mixed>>>> $errorsForFile
+	 * @param array<array<array<array{source: string, message: string}>>> $errorsForFile
 	 * @return string in format <source>: <message>
 	 */
 	private function getFormattedErrorsOnLine(array $errorsForFile, int $line): string
