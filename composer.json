@@ -35,5 +35,10 @@
 		"coverage": "tests/collect-coverage tests",
 		"phpcs": "vendor/bin/phpcs --ignore=tests/*/data/* -s Forrest79CodingStandard tests",
 		"phpstan": "vendor/bin/phpstan analyse Forrest79CodingStandard tests"
+	},
+	"config": {
+		"allow-plugins": {
+			"dealerdirect/phpcodesniffer-composer-installer": false
+		}
 	}
 }
