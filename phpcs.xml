@@ -2,10 +2,6 @@
 <ruleset name="Forrest79CodingStandard">
 	<rule ref="./Forrest79CodingStandard/ruleset.xml"/>
 
-	<rule ref="Forrest79CodingStandard.Classes.ForceFinalClass.MissingFinal">
-		<exclude-pattern>Forrest79CodingStandard/*</exclude-pattern>
-	</rule>
-
 	<rule ref="PSR1.Files.SideEffects.FoundWithSymbols">
 		<exclude-pattern>tests/*</exclude-pattern>
 	</rule>

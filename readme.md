@@ -37,7 +37,7 @@ How to use it:
 <?xml version="1.0"?>
 <ruleset name="MyOwnCS">
 	<rule ref="./Forrest79CodingStandard/ruleset.xml">
-		<exclude name="Forrest79CodingStandard.Classes.ForceFinalClass.MissingFinal"/><!-- Not good for libraries -->
+		<exclude name="Forrest79CodingStandard.Exceptions.ExceptionDeclaration.NotChainable"/>
 	</rule>
 </ruleset>
 ```
@@ -45,7 +45,7 @@ How to use it:
 * Or just concrete files.
 
 ```xml
-<rule ref="Forrest79CodingStandard.Classes.ForceFinalClass.MissingFinal">
+<rule ref="Forrest79CodingStandard.Exceptions.ExceptionDeclaration.NotChainable">
     <exclude-pattern>tests/Sniffs/TestCase.php</exclude-pattern>
 </rule>
 ```
@@ -73,12 +73,6 @@ PSR-4 settings
 Custom sniffs
 -------------
 
-### Classes\ForceFinalClassSniff
-
-#### Forrest79CodingStandard.Classes.ForceFinalClass.MissingFinal
-
-Class should be `abstract` or `final`. If you need to have class without `final` or `abstract`, just ignore whole file.
-
 ### Exceptions\ExceptionDeclarationSniff
 
 #### Forrest79CodingStandard.Exceptions.ExceptionDeclarationSniff.NotEndingWithException
@@ -94,7 +88,7 @@ Exceptions should be chainable, last constructor argument must be `\Throwable`.
 All exceptions should be in `Exceptions` subdirectory. You can change subdirectory name via settings:
 
 ```xml
-<rule ref="Forrest79CodingStandard.Exceptions.ExceptionDeclarationSniff">
+<rule ref="Forrest79CodingStandard.Exceptions.ExceptionDeclaration">
     <properties>
         <property name="exceptionsDirectoryName" type="string" value="exceptions"/>
     </properties>
