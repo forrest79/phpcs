@@ -13,7 +13,7 @@ Forrest79 Coding Standard for PHP
 The recommended way to install Forrest79 PHP Coding Standard is through Composer:
 
 ```sh
-composer require forrest79/phpcs
+composer require --dev forrest79/phpcs
 ```
 
 Forrest79 PHP Coding Standard requires PHP 7.4.
