@@ -135,6 +135,12 @@ For Nette Framework. In presenters, all `beforeRender` methods should call their
 
 For Nette Framework. In presenters, all `startup`, `beforeRender` and `createComponent` methods should be `protected`.
 
+### PHP\CorrectCaseTypeSniff
+
+#### Forrest79CodingStandard.PHP.CorrectCaseType
+
+Checks that all PHP types are lowercase except `NULL`, `TRUE` and `FALSE` that must be uppercase. Based on `Generic.PHP.LowerCaseTypeSniff`.
+
 
 General naming conventions
 --------------------------

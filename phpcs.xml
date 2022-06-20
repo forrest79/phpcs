@@ -23,4 +23,8 @@
 		<exclude-pattern>Forrest79CodingStandard/Sniffs/NamingConventions/ValidVariableNameSniff.php</exclude-pattern>
 		<exclude-pattern>tests/Sniffs/TestCase.php</exclude-pattern>
 	</rule>
+
+	<rule ref="SlevomatCodingStandard.TypeHints.ParameterTypeHint.MissingNativeTypeHint">
+		<exclude-pattern>Forrest79CodingStandard/Sniffs/PHP/CorrectCaseTypeSniff.php</exclude-pattern>
+	</rule>
 </ruleset>
