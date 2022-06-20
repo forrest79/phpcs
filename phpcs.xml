@@ -19,24 +19,8 @@
 		</properties>
 	</rule>
 
-	<!-- PHP 7.3 -->
-	<rule ref="SlevomatCodingStandard.Functions.RequireTrailingCommaInCall.MissingTrailingComma">
-		<exclude-pattern>Forrest79CodingStandard/Sniffs/Exceptions/ExceptionDeclarationSniff.php</exclude-pattern>
-		<exclude-pattern>tests/*</exclude-pattern>
-	</rule>
-
-	<!-- PHP 8.0 -->
-	<rule ref="SlevomatCodingStandard.Functions.RequireTrailingCommaInDeclaration.MissingTrailingComma">
-		<exclude-pattern>tests/Sniffs/TestCase.php</exclude-pattern>
-	</rule>
-
 	<rule ref="SlevomatCodingStandard.Functions.UnusedParameter.UnusedParameter">
 		<exclude-pattern>Forrest79CodingStandard/Sniffs/NamingConventions/ValidVariableNameSniff.php</exclude-pattern>
 		<exclude-pattern>tests/Sniffs/TestCase.php</exclude-pattern>
-	</rule>
-
-	<!-- PHP 7.4 -->
-	<rule ref="SlevomatCodingStandard.TypeHints.PropertyTypeHint.MissingNativeTypeHint">
-		<exclude-pattern>Forrest79CodingStandard/*</exclude-pattern>
 	</rule>
 </ruleset>

@@ -34,7 +34,6 @@
 	<rule ref="Generic.PHP.ForbiddenFunctions"/>
 	<rule ref="Generic.PHP.UpperCaseConstant"/>
 	<rule ref="Generic.PHP.LowerCaseKeyword"/>
-	<rule ref="Generic.PHP.LowerCaseType"/>
 	<rule ref="Generic.Strings.UnnecessaryStringConcat">
 		<properties>
 			<property name="allowMultiline" value="true"/>
@@ -189,6 +188,13 @@
 			<property name="traversableTypeHints" type="array">
 				<element value="Traversable"/>
 			</property>
+		</properties>
+	</rule>
+	<rule ref="SlevomatCodingStandard.TypeHints.UnionTypeHintFormat">
+		<properties>
+			<property name="withSpaces" type="string" value="no"/>
+			<property name="shortNullable" type="string" value="no"/>
+			<property name="nullPosition" type="string" value="last"/>
 		</properties>
 	</rule>
 	<rule ref="Squiz.Arrays.ArrayBracketSpacing">

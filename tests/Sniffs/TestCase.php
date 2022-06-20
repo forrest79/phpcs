@@ -86,7 +86,7 @@ abstract class TestCase extends Tester\TestCase
 				'',
 				'',
 			],
-			$this->getSniffClassName()
+			$this->getSniffClassName(),
 		);
 	}
 
@@ -101,14 +101,14 @@ abstract class TestCase extends Tester\TestCase
 		PHP_CodeSniffer\Files\File $resultFile,
 		int $line,
 		string $code,
-		?string $message = NULL
+		string|NULL $message = NULL,
 	): void
 	{
 		$errors = $resultFile->getErrors();
 
 		Tester\Assert::true(
 			isset($errors[$line]),
-			sprintf('Expected error on line %s, but none occurred', $line)
+			sprintf('Expected error on line %s, but none occurred', $line),
 		);
 
 		$expectedCode = $this->getSniffName() . '.' . $code;
@@ -123,8 +123,8 @@ abstract class TestCase extends Tester\TestCase
 				PHP_EOL,
 				PHP_EOL,
 				$this->getFormattedErrorsOnLine($errors, $line),
-				PHP_EOL
-			)
+				PHP_EOL,
+			),
 		);
 	}
 
@@ -132,7 +132,7 @@ abstract class TestCase extends Tester\TestCase
 	/**
 	 * @param array<array<array{source: string, message: string}>> $errorsForLine
 	 */
-	private function hasError(iterable $errorsForLine, string $code, ?string $message = NULL): bool
+	private function hasError(iterable $errorsForLine, string $code, string|NULL $message = NULL): bool
 	{
 		foreach ($errorsForLine as $errorsForPosition) {
 			foreach ($errorsForPosition as $error) {
@@ -160,8 +160,8 @@ abstract class TestCase extends Tester\TestCase
 				$line,
 				PHP_EOL,
 				$this->getFormattedErrorsOnLine($errors, $line),
-				PHP_EOL
-			)
+				PHP_EOL,
+			),
 		);
 	}
 
@@ -176,7 +176,7 @@ abstract class TestCase extends Tester\TestCase
 			PHP_EOL,
 			PHP_EOL,
 			$this->getFormattedErrorsForFile($errorsForFile),
-			PHP_EOL
+			PHP_EOL,
 		));
 	}
 
@@ -193,7 +193,7 @@ abstract class TestCase extends Tester\TestCase
 				$line,
 				PHP_EOL,
 				$this->getFormattedErrorsOnLine($errorsForFile, $line),
-				PHP_EOL
+				PHP_EOL,
 			);
 		}
 

@@ -33,7 +33,7 @@ final class FinalInjectMethodSniffTest extends Sniffs\TestCase
 			$resultFile,
 			13,
 			FinalInjectMethodSniff::CODE_MISSING_FINAL,
-			'Non final presenter class must have final inject methods'
+			'Non final presenter class must have final inject methods',
 		);
 	}
 

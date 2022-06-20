@@ -25,7 +25,7 @@ final class PresenterMethodsSniffTest extends Sniffs\TestCase
 			$resultFile,
 			8,
 			PresenterMethodsSniff::CODE_NOT_PROTECTED,
-			'Method "startup" is not allowed to be public'
+			'Method "startup" is not allowed to be public',
 		);
 	}
 
@@ -38,7 +38,7 @@ final class PresenterMethodsSniffTest extends Sniffs\TestCase
 			$resultFile,
 			13,
 			PresenterMethodsSniff::CODE_NOT_PROTECTED,
-			'Method "beforeRender" is not allowed to be public'
+			'Method "beforeRender" is not allowed to be public',
 		);
 	}
 
@@ -51,7 +51,7 @@ final class PresenterMethodsSniffTest extends Sniffs\TestCase
 			$resultFile,
 			18,
 			PresenterMethodsSniff::CODE_NOT_PROTECTED,
-			'Method "createComponentTest" is not allowed to be public'
+			'Method "createComponentTest" is not allowed to be public',
 		);
 	}
 
