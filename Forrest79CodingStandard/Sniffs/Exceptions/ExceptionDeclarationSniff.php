@@ -74,7 +74,7 @@ final class ExceptionDeclarationSniff implements PHP_CodeSniffer\Sniffs\Sniff
 		$filename = str_replace('\\', '/', $filename);
 
 		$pathInfo = pathinfo($filename);
-		$pathSegments = explode('/', $pathInfo['dirname']);
+		$pathSegments = explode('/', $pathInfo['dirname'] ?? '');
 
 		$exceptionDirectoryName = array_pop($pathSegments);
 
