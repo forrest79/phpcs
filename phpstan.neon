@@ -6,9 +6,8 @@ parameters:
 	level: max
 	excludePaths:
 		- tests/*/data/*
-	bootstrapFiles:
-		- %rootDir%/../../squizlabs/php_codesniffer/autoload.php
-		- %rootDir%/../../squizlabs/php_codesniffer/src/Util/Tokens.php
+	scanDirectories:
+		- %rootDir%/../../squizlabs/php_codesniffer/src
 	ignoreErrors:
 		-
 			message: "#Parameter \\#3 \\$data_compare_func of function array_uintersect expects callable\\(mixed, mixed\\): int, 'strcasecmp' given\\.#"
