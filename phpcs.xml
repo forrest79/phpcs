@@ -6,10 +6,6 @@
 		<exclude-pattern>tests/*</exclude-pattern>
 	</rule>
 
-	<rule ref="SlevomatCodingStandard.Classes.ModernClassNameReference.ClassNameReferencedViaFunctionCall">
-		<exclude-pattern>tests/Sniffs/TestCase.php</exclude-pattern>
-	</rule>
-
 	<rule ref="SlevomatCodingStandard.Files.TypeNameMatchesFileName">
 		<properties>
 			<property name="rootNamespaces" type="array" value="
@@ -17,14 +13,5 @@
 				tests=>Forrest79CodingStandard,
 			"/>
 		</properties>
-	</rule>
-
-	<rule ref="SlevomatCodingStandard.Functions.UnusedParameter.UnusedParameter">
-		<exclude-pattern>Forrest79CodingStandard/Sniffs/NamingConventions/ValidVariableNameSniff.php</exclude-pattern>
-		<exclude-pattern>tests/Sniffs/TestCase.php</exclude-pattern>
-	</rule>
-
-	<rule ref="SlevomatCodingStandard.TypeHints.ParameterTypeHint.MissingNativeTypeHint">
-		<exclude-pattern>Forrest79CodingStandard/Sniffs/PHP/CorrectCaseTypeSniff.php</exclude-pattern>
 	</rule>
 </ruleset>

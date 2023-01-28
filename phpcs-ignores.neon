@@ -1,0 +1,55 @@
+ignoreErrors:
+	-
+		sniff: SlevomatCodingStandard.Functions.UnusedParameter.UnusedParameter
+		message: Unused parameter $file.
+		count: 2
+		path: Forrest79CodingStandard/Sniffs/NamingConventions/ValidVariableNameSniff.php
+
+	-
+		sniff: SlevomatCodingStandard.Functions.UnusedParameter.UnusedParameter
+		message: Unused parameter $stackPointer.
+		count: 2
+		path: Forrest79CodingStandard/Sniffs/NamingConventions/ValidVariableNameSniff.php
+
+	-
+		sniff: SlevomatCodingStandard.TypeHints.ParameterTypeHint.MissingNativeTypeHint
+		message: 'Method \Forrest79CodingStandard\Sniffs\PHP\CorrectCaseTypeSniff::processType() does not have native type hint for its parameter $error but it should be possible to add it based on @param annotation "string".'
+		count: 1
+		path: Forrest79CodingStandard/Sniffs/PHP/CorrectCaseTypeSniff.php
+
+	-
+		sniff: SlevomatCodingStandard.TypeHints.ParameterTypeHint.MissingNativeTypeHint
+		message: 'Method \Forrest79CodingStandard\Sniffs\PHP\CorrectCaseTypeSniff::processType() does not have native type hint for its parameter $errorCode but it should be possible to add it based on @param annotation "string".'
+		count: 1
+		path: Forrest79CodingStandard/Sniffs/PHP/CorrectCaseTypeSniff.php
+
+	-
+		sniff: SlevomatCodingStandard.TypeHints.ParameterTypeHint.MissingNativeTypeHint
+		message: 'Method \Forrest79CodingStandard\Sniffs\PHP\CorrectCaseTypeSniff::processType() does not have native type hint for its parameter $stackPtr but it should be possible to add it based on @param annotation "int".'
+		count: 1
+		path: Forrest79CodingStandard/Sniffs/PHP/CorrectCaseTypeSniff.php
+
+	-
+		sniff: SlevomatCodingStandard.TypeHints.ParameterTypeHint.MissingNativeTypeHint
+		message: 'Method \Forrest79CodingStandard\Sniffs\PHP\CorrectCaseTypeSniff::processType() does not have native type hint for its parameter $type but it should be possible to add it based on @param annotation "string".'
+		count: 1
+		path: Forrest79CodingStandard/Sniffs/PHP/CorrectCaseTypeSniff.php
+
+	-
+		sniff: SlevomatCodingStandard.Classes.ModernClassNameReference.ClassNameReferencedViaFunctionCall
+		message: 'Class name referenced via call of function get_class().'
+		count: 1
+		path: tests/Sniffs/TestCase.php
+
+	-
+		sniff: SlevomatCodingStandard.Functions.UnusedParameter.UnusedParameter
+		message: Unused parameter $phpcsFile.
+		count: 1
+		path: tests/Sniffs/TestCase.php
+
+	-
+		sniff: SlevomatCodingStandard.Functions.UnusedParameter.UnusedParameter
+		message: Unused parameter $stackPtr.
+		count: 1
+		path: tests/Sniffs/TestCase.php
+
