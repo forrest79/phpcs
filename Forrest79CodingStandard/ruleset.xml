@@ -77,6 +77,7 @@
 	<rule ref="PSR2.Methods.MethodDeclaration"/>
 	<rule ref="PSR2.Namespaces.UseDeclaration"/>
 	<rule ref="SlevomatCodingStandard/ruleset.xml">
+		<exclude name="SlevomatCodingStandard.Arrays.AlphabeticallySortedByKeys.IncorrectKeyOrder"/>
 		<exclude name="SlevomatCodingStandard.Classes.ClassLength.ClassTooLong"/>
 		<exclude name="SlevomatCodingStandard.Classes.ClassMemberSpacing.IncorrectCountOfBlankLinesBetweenMembers"/>
 		<exclude name="SlevomatCodingStandard.Classes.ClassStructure.IncorrectGroupOrder"/>
