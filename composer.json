@@ -12,10 +12,10 @@
 	],
 	"require": {
 		"php": "^8.0",
-		"slevomat/coding-standard": "^8.9"
+		"slevomat/coding-standard": "^8.11"
 	},
 	"require-dev": {
-		"forrest79/phpcs-ignores": "^0.1",
+		"forrest79/phpcs-ignores": "^0.3",
 		"nette/tester": "^2.5",
 		"phpstan/phpstan": "^1.10",
 		"phpstan/phpstan-strict-rules": "^1.5"
