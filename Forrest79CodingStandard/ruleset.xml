@@ -31,6 +31,16 @@
 	<rule ref="Generic.PHP.CharacterBeforePHPOpeningTag"/>
 	<rule ref="Generic.PHP.DeprecatedFunctions"/>
 	<rule ref="Generic.PHP.DisallowShortOpenTag"/>
+	<rule ref="Generic.PHP.ForbiddenFunctions">
+		<properties>
+			<property name="forbiddenFunctions" type="array">
+				<element key="bdump" value="null"/>
+				<element key="dump" value="null"/>
+				<element key="dumpe" value="null"/>
+				<element key="var_dump" value="null"/>
+			</property>
+		</properties>
+	</rule>
 	<rule ref="Generic.PHP.ForbiddenFunctions"/>
 	<rule ref="Generic.PHP.UpperCaseConstant"/>
 	<rule ref="Generic.PHP.LowerCaseKeyword"/>
