@@ -10,10 +10,6 @@ abstract class TestCase extends Tester\TestCase
 
 	public function run(): void
 	{
-		if (defined('__PHPSTAN_RUNNING__')) {
-			return;
-		}
-
 		Tester\Environment::setup();
 
 		if (!defined('PHP_CODESNIFFER_CBF')) {
