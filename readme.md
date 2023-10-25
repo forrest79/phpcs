@@ -3,7 +3,7 @@
 [![Latest Stable Version](https://poser.pugx.org/forrest79/phpcs/v)](//packagist.org/packages/forrest79/phpcs)
 [![Monthly Downloads](https://poser.pugx.org/forrest79/phpcs/d/monthly)](//packagist.org/packages/forrest79/phpcs)
 [![License](https://poser.pugx.org/forrest79/phpcs/license)](//packagist.org/packages/forrest79/phpcs)
-[![Build](https://github.com/forrest79/PHPCS/actions/workflows/build.yml/badge.svg?branch=master)](https://github.com/forrest79/PHPCS/actions/workflows/build.yml)
+[![Build](https://github.com/forrest79/phpcs/actions/workflows/build.yml/badge.svg?branch=master)](https://github.com/forrest79/phpcs/actions/workflows/build.yml)
 
 > Based on (no more developed) https://github.com/consistence/coding-standard and work of https://github.com/klapuch. Thanks!
 
@@ -15,7 +15,7 @@ The recommended way to install Forrest79 PHP Coding Standard is through Composer
 composer require --dev forrest79/phpcs
 ```
 
-Forrest79 PHP Coding Standard requires PHP 7.4.
+Forrest79 PHP Coding Standard requires PHP 8.0.
 
 
 ## How to use it:
@@ -744,7 +744,7 @@ private $foo;
 
 ### Code analysis annotations
 
-- Are never user, use [PHPCS-Ignores](https://github.com/forrest79/PHPCS-Ignores) when needed.
+- Are never user, use [PHPCS-Ignores](https://github.com/forrest79/phpcs-ignores) when needed.
 
 ### Application annotations
 
