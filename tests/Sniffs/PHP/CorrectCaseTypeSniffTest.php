@@ -25,21 +25,21 @@ final class CorrectCaseTypeSniffTest extends Sniffs\TestCase
 			$resultFile,
 			9,
 			'PropertyTypeFound',
-			'PHP property type declarations must be lowercase; expected "NULL" but found "null"',
+			'PHP property type declarations must be uppercase; expected "NULL" but found "null"',
 		);
 
 		$this->assertSniffError(
 			$resultFile,
 			12,
 			'ParamTypeFound',
-			'PHP parameter type declarations must be lowercase; expected "NULL" but found "NUll"',
+			'PHP parameter type declarations must be uppercase; expected "NULL" but found "NUll"',
 		);
 
 		$this->assertSniffError(
 			$resultFile,
 			12,
 			'ReturnTypeFound',
-			'PHP return type declarations must be lowercase; expected "NULL" but found "null"',
+			'PHP return type declarations must be uppercase; expected "NULL" but found "null"',
 		);
 	}
 

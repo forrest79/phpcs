@@ -16,6 +16,7 @@ final class CorrectCaseTypeSniff extends PHP_CodeSniffer\Standards\Generic\Sniff
 	protected function processType(PHP_CodeSniffer\Files\File $phpcsFile, $stackPtr, $type, $error, $errorCode): void
 	{
 		if (in_array(strtolower($type), ['null', 'true', 'false'], TRUE)) {
+			$error = str_replace('lowercase', 'uppercase', $error);
 			$typeCorrect = strtoupper($type);
 			$typeOpposite = strtolower($type);
 			$typeCase = 'upper';
