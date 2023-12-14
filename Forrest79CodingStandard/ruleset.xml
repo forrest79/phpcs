@@ -164,7 +164,6 @@
 	<rule ref="SlevomatCodingStandard.TypeHints.DeclareStrictTypes">
 		<properties>
 			<property name="declareOnFirstLine" type="bool" value="true"/>
-			<property name="newlinesCountBetweenOpenTagAndDeclare" value="2"/>
 			<property name="spacesCountAroundEqualsSign" type="int" value="0"/>
 		</properties>
 	</rule>
