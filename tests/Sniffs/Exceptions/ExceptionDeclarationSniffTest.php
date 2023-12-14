@@ -6,13 +6,16 @@ require __DIR__ . '/../../autoload.php';
 
 use Forrest79CodingStandard\Sniffs;
 
+/**
+ * @testCase
+ */
 final class ExceptionDeclarationSniffTest extends Sniffs\TestCase
 {
 
 	public function testInvalidExceptionName(): void
 	{
 		$resultFile = $this->checkFile(__DIR__ . '/data/InvalidExceptionName.php', [
-			'exceptionsDirectoryName' => 'data',
+			'exceptionsDirectoryName' => ['value' => 'data', 'scope' => 'standard'],
 		]);
 
 		$this->assertSniffError(
@@ -27,7 +30,7 @@ final class ExceptionDeclarationSniffTest extends Sniffs\TestCase
 	public function testValidClassName(): void
 	{
 		$resultFile = $this->checkFile(__DIR__ . '/data/ValidNameException.php', [
-			'exceptionsDirectoryName' => 'data',
+			'exceptionsDirectoryName' => ['value' => 'data', 'scope' => 'standard'],
 		]);
 
 		$this->assertNoSniffErrorInFile($resultFile);
@@ -37,7 +40,7 @@ final class ExceptionDeclarationSniffTest extends Sniffs\TestCase
 	public function testValidClassNameThatExtendsCustomException(): void
 	{
 		$resultFile = $this->checkFile(__DIR__ . '/data/ValidClassNameThatExtendsCustomException.php', [
-			'exceptionsDirectoryName' => 'data',
+			'exceptionsDirectoryName' => ['value' => 'data', 'scope' => 'standard'],
 		]);
 
 		$this->assertNoSniffErrorInFile($resultFile);
@@ -47,7 +50,7 @@ final class ExceptionDeclarationSniffTest extends Sniffs\TestCase
 	public function testAbstractExceptionWithValidNameException(): void
 	{
 		$resultFile = $this->checkFile(__DIR__ . '/data/AbstractExceptionWithValidNameException.php', [
-			'exceptionsDirectoryName' => 'data',
+			'exceptionsDirectoryName' => ['value' => 'data', 'scope' => 'standard'],
 		]);
 
 		$this->assertNoSniffErrorInFile($resultFile);
@@ -57,7 +60,7 @@ final class ExceptionDeclarationSniffTest extends Sniffs\TestCase
 	public function testAbstractClassWithInvalidExceptionName(): void
 	{
 		$resultFile = $this->checkFile(__DIR__ . '/data/AbstractExceptionWithInvalidName.php', [
-			'exceptionsDirectoryName' => 'data',
+			'exceptionsDirectoryName' => ['value' => 'data', 'scope' => 'standard'],
 		]);
 
 		$this->assertSniffError(
@@ -72,7 +75,7 @@ final class ExceptionDeclarationSniffTest extends Sniffs\TestCase
 	public function testClassThatDoesNotExtendAnything(): void
 	{
 		$resultFile = $this->checkFile(__DIR__ . '/data/ClassThatDoesNotExtendAnything.php', [
-			'exceptionsDirectoryName' => 'data',
+			'exceptionsDirectoryName' => ['value' => 'data', 'scope' => 'standard'],
 		]);
 
 		$this->assertNoSniffErrorInFile($resultFile);
@@ -82,7 +85,7 @@ final class ExceptionDeclarationSniffTest extends Sniffs\TestCase
 	public function testClassThatExtendsRegularClass(): void
 	{
 		$resultFile = $this->checkFile(__DIR__ . '/data/ClassThatDoesNotExtendException.php', [
-			'exceptionsDirectoryName' => 'data',
+			'exceptionsDirectoryName' => ['value' => 'data', 'scope' => 'standard'],
 		]);
 
 		$this->assertNoSniffErrorInFile($resultFile);
@@ -92,7 +95,7 @@ final class ExceptionDeclarationSniffTest extends Sniffs\TestCase
 	public function testInterfaceThatDoesNotExtendAnything(): void
 	{
 		$resultFile = $this->checkFile(__DIR__ . '/data/InterfaceThatDoesNotExtendAnything.php', [
-			'exceptionsDirectoryName' => 'data',
+			'exceptionsDirectoryName' => ['value' => 'data', 'scope' => 'standard'],
 		]);
 
 		$this->assertNoSniffErrorInFile($resultFile);
@@ -102,7 +105,7 @@ final class ExceptionDeclarationSniffTest extends Sniffs\TestCase
 	public function testInterfaceThatDoesNotExtendAnythingException(): void
 	{
 		$resultFile = $this->checkFile(__DIR__ . '/data/InterfaceThatDoesNotExtendAnythingException.php', [
-			'exceptionsDirectoryName' => 'data',
+			'exceptionsDirectoryName' => ['value' => 'data', 'scope' => 'standard'],
 		]);
 
 		$this->assertNoSniffErrorInFile($resultFile);
@@ -112,7 +115,7 @@ final class ExceptionDeclarationSniffTest extends Sniffs\TestCase
 	public function testInterfaceThatExtendsException(): void
 	{
 		$resultFile = $this->checkFile(__DIR__ . '/data/InterfaceThatExtendsException.php', [
-			'exceptionsDirectoryName' => 'data',
+			'exceptionsDirectoryName' => ['value' => 'data', 'scope' => 'standard'],
 		]);
 
 		$this->assertNoSniffErrorInFile($resultFile);
@@ -122,7 +125,7 @@ final class ExceptionDeclarationSniffTest extends Sniffs\TestCase
 	public function testInterfaceThatExtendsExceptionIncorrectName(): void
 	{
 		$resultFile = $this->checkFile(__DIR__ . '/data/InterfaceThatExtendsExceptionIncorrectName.php', [
-			'exceptionsDirectoryName' => 'data',
+			'exceptionsDirectoryName' => ['value' => 'data', 'scope' => 'standard'],
 		]);
 
 		$this->assertSniffError(
@@ -137,7 +140,7 @@ final class ExceptionDeclarationSniffTest extends Sniffs\TestCase
 	public function testExceptionWithConstructorWithoutParametersIsNotChainable(): void
 	{
 		$resultFile = $this->checkFile(__DIR__ . '/data/ConstructWithoutParametersException.php', [
-			'exceptionsDirectoryName' => 'data',
+			'exceptionsDirectoryName' => ['value' => 'data', 'scope' => 'standard'],
 		]);
 
 		$this->assertSniffError(
@@ -152,7 +155,7 @@ final class ExceptionDeclarationSniffTest extends Sniffs\TestCase
 	public function testExceptionWithChainableConstructorIsChainable(): void
 	{
 		$resultFile = $this->checkFile(__DIR__ . '/data/ChainableConstructorException.php', [
-			'exceptionsDirectoryName' => 'data',
+			'exceptionsDirectoryName' => ['value' => 'data', 'scope' => 'standard'],
 		]);
 
 		$this->assertNoSniffErrorInFile($resultFile);
@@ -162,7 +165,7 @@ final class ExceptionDeclarationSniffTest extends Sniffs\TestCase
 	public function testExceptionWithCustomExceptionArgumentIsChainable(): void
 	{
 		$resultFile = $this->checkFile(__DIR__ . '/data/CustomExceptionArgumentChainableConstructorException.php', [
-			'exceptionsDirectoryName' => 'data',
+			'exceptionsDirectoryName' => ['value' => 'data', 'scope' => 'standard'],
 		]);
 
 		$this->assertNoSniffErrorInFile($resultFile);
@@ -172,7 +175,7 @@ final class ExceptionDeclarationSniffTest extends Sniffs\TestCase
 	public function testExceptionWithErrorArgumentIsChainable(): void
 	{
 		$resultFile = $this->checkFile(__DIR__ . '/data/ErrorArgumentChainableConstructorException.php', [
-			'exceptionsDirectoryName' => 'data',
+			'exceptionsDirectoryName' => ['value' => 'data', 'scope' => 'standard'],
 		]);
 
 		$this->assertNoSniffErrorInFile($resultFile);
@@ -182,7 +185,7 @@ final class ExceptionDeclarationSniffTest extends Sniffs\TestCase
 	public function testExceptionWithNonchainableConstructorIsNotChainable(): void
 	{
 		$resultFile = $this->checkFile(__DIR__ . '/data/NonChainableConstructorException.php', [
-			'exceptionsDirectoryName' => 'data',
+			'exceptionsDirectoryName' => ['value' => 'data', 'scope' => 'standard'],
 		]);
 
 		$this->assertSniffError(
@@ -197,7 +200,7 @@ final class ExceptionDeclarationSniffTest extends Sniffs\TestCase
 	public function testExceptionWithConstructorWithoutParameterTypeHintIsNotChainable(): void
 	{
 		$resultFile = $this->checkFile(__DIR__ . '/data/NonChainableConstructorWithoutParameterTypehintException.php', [
-			'exceptionsDirectoryName' => 'data',
+			'exceptionsDirectoryName' => ['value' => 'data', 'scope' => 'standard'],
 		]);
 
 		$this->assertSniffError(
@@ -212,7 +215,7 @@ final class ExceptionDeclarationSniffTest extends Sniffs\TestCase
 	public function testExceptionIsPlacedInCorrectDirectory(): void
 	{
 		$resultFile = $this->checkFile(__DIR__ . '/data/ValidNameException.php', [
-			'exceptionsDirectoryName' => 'data',
+			'exceptionsDirectoryName' => ['value' => 'data', 'scope' => 'standard'],
 		]);
 
 		$this->assertNoSniffErrorInFile($resultFile);
@@ -222,7 +225,7 @@ final class ExceptionDeclarationSniffTest extends Sniffs\TestCase
 	public function testExceptionIsPlacedInIncorrectDirectory(): void
 	{
 		$resultFile = $this->checkFile(__DIR__ . '/data/ValidNameException.php', [
-			'exceptionsDirectoryName' => 'exceptions',
+			'exceptionsDirectoryName' => ['value' => 'exceptions', 'scope' => 'standard'],
 		]);
 
 		$this->assertSniffError(
@@ -237,7 +240,7 @@ final class ExceptionDeclarationSniffTest extends Sniffs\TestCase
 	public function testExceptionIsPlacedInIncorrectDirectoryCaseSensitively(): void
 	{
 		$resultFile = $this->checkFile(__DIR__ . '/data/ValidNameException.php', [
-			'exceptionsDirectoryName' => 'Data',
+			'exceptionsDirectoryName' => ['value' => 'Data', 'scope' => 'standard'],
 		]);
 
 		$this->assertSniffError(

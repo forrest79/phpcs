@@ -6,13 +6,16 @@ require __DIR__ . '/../../autoload.php';
 
 use Forrest79CodingStandard\Sniffs;
 
+/**
+ * @testCase
+ */
 final class MethodStructureSniffTest extends Sniffs\TestCase
 {
 
 	public function testCorrectOrder(): void
 	{
 		$resultFile = $this->checkFile(__DIR__ . '/data/CorrectAlphabeticalOrder.php', [
-			'checkFiles' => ['/data/CorrectAlphabeticalOrder.php'],
+			'checkFiles' => ['value' => ['/data/CorrectAlphabeticalOrder.php'], 'scope' => 'standard'],
 		]);
 
 		$this->assertNoSniffErrorInFile($resultFile);
@@ -22,7 +25,7 @@ final class MethodStructureSniffTest extends Sniffs\TestCase
 	public function testIncorrectOrder(): void
 	{
 		$resultFile = $this->checkFile(__DIR__ . '/data/IncorrectAlphabeticalOrder.php', [
-			'checkFiles' => ['/data/IncorrectAlphabeticalOrder.php'],
+			'checkFiles' => ['value' => ['/data/IncorrectAlphabeticalOrder.php'], 'scope' => 'standard'],
 		]);
 
 		$this->assertSniffError(

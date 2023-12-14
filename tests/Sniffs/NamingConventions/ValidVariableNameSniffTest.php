@@ -7,6 +7,9 @@ require __DIR__ . '/../../autoload.php';
 use Forrest79CodingStandard\Sniffs;
 use PHP_CodeSniffer;
 
+/**
+ * @testCase
+ */
 final class ValidVariableNameSniffTest extends Sniffs\TestCase
 {
 

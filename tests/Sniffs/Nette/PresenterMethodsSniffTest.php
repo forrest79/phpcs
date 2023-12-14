@@ -6,6 +6,9 @@ require __DIR__ . '/../../autoload.php';
 
 use Forrest79CodingStandard\Sniffs;
 
+/**
+ * @testCase
+ */
 final class PresenterMethodsSniffTest extends Sniffs\TestCase
 {
 
