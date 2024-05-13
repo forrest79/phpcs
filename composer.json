@@ -15,7 +15,7 @@
 		"slevomat/coding-standard": "^8.15"
 	},
 	"require-dev": {
-		"forrest79/phpcs-ignores": "^0.3",
+		"forrest79/phpcs-ignores": "^0.5",
 		"nette/tester": "^2.5",
 		"phpstan/phpstan": "^1.10",
 		"phpstan/phpstan-strict-rules": "^1.5"
