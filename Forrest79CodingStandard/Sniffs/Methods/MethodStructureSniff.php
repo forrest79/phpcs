@@ -45,10 +45,12 @@ final class MethodStructureSniff implements PHP_CodeSniffer\Sniffs\Sniff
 		$tokens = $phpcsFile->getTokens();
 
 		while (($stackPointer = $phpcsFile->findNext([T_FUNCTION], $stackPointer + 1)) !== FALSE) {
+			assert(is_array($tokens[$stackPointer - 2]) && is_array($tokens[$stackPointer + 2]));
 			if (
 				$tokens[$stackPointer - 2]['code'] === T_PUBLIC
 				&& $tokens[$stackPointer + 2]['content'] !== '__construct'
 			) {
+				assert(is_string($tokens[$stackPointer + 2]['content']));
 				$methods[] = $tokens[$stackPointer + 2]['content'];
 			}
 		}
@@ -62,8 +64,8 @@ final class MethodStructureSniff implements PHP_CodeSniffer\Sniffs\Sniff
 
 
 	/**
-	 * @param array<string> $methods
-	 * @return array<string>
+	 * @param list<string> $methods
+	 * @return list<string>
 	 */
 	private static function sort(array $methods): array
 	{

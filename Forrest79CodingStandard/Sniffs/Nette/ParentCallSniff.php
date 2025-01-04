@@ -42,6 +42,7 @@ final class ParentCallSniff implements PHP_CodeSniffer\Sniffs\Sniff
 
 	private function hasParentCall(PHP_CodeSniffer\Files\File $phpcsFile, int $stackPointer): bool
 	{
+		/** @var array<int, array{code: int|string, content: string, bracket_closer: int}> $tokens */
 		$tokens = $phpcsFile->getTokens();
 		foreach (self::METHODS as $method) {
 			$openBracket = $phpcsFile->findNext([T_OPEN_CURLY_BRACKET => T_OPEN_CURLY_BRACKET], $stackPointer);

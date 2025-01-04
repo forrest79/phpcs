@@ -15,10 +15,10 @@
 		"slevomat/coding-standard": "^8.15"
 	},
 	"require-dev": {
-		"forrest79/phpcs-ignores": "^0.3",
+		"forrest79/phpcs-ignores": "^0.5",
 		"nette/tester": "^2.5",
-		"phpstan/phpstan": "^1.10",
-		"phpstan/phpstan-strict-rules": "^1.5"
+		"phpstan/phpstan": "^2.1",
+		"phpstan/phpstan-strict-rules": "^2.0"
 	},
 	"autoload": {
 		"psr-4": {
@@ -33,7 +33,7 @@
 	"scripts": {
 		"tests": "tests/run-tests tests",
 		"coverage": "tests/collect-coverage tests",
-		"phpcs": "vendor/bin/phpcs --bootstrap=vendor/forrest79/phpcs-ignores/src/bootstrap.php --ignore=tests/*/data/* -s Forrest79CodingStandard tests",
+		"phpcs": "vendor/bin/phpcs --bootstrap=vendor/forrest79/phpcs-ignores/src/bootstrap-outdated.php --ignore=tests/*/data/* -s Forrest79CodingStandard tests",
 		"phpstan": "vendor/bin/phpstan analyse Forrest79CodingStandard tests"
 	},
 	"config": {

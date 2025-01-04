@@ -100,6 +100,7 @@ abstract class TestCase extends Tester\TestCase
 		string|NULL $message = NULL,
 	): void
 	{
+		/** @var array<int, array<array<array{source: string, message: string}>>> $errors */
 		$errors = $resultFile->getErrors();
 
 		Tester\Assert::true(
@@ -147,6 +148,7 @@ abstract class TestCase extends Tester\TestCase
 
 	protected function assertNoSniffError(PHP_CodeSniffer\Files\File $resultFile, int $line): void
 	{
+		/** @var array<array<array<array{source: string, message: string}>>> $errors */
 		$errors = $resultFile->getErrors();
 
 		Tester\Assert::false(
@@ -164,6 +166,7 @@ abstract class TestCase extends Tester\TestCase
 
 	protected function assertNoSniffErrorInFile(PHP_CodeSniffer\Files\File $file): void
 	{
+		/** @var array<array<array<array{source: string, message: string}>>> $errorsForFile */
 		$errorsForFile = $file->getErrors();
 
 		Tester\Assert::same([], $errorsForFile, sprintf(

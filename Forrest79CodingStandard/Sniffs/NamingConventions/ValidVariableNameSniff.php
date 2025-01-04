@@ -30,6 +30,8 @@ final class ValidVariableNameSniff extends PHP_CodeSniffer\Sniffs\AbstractVariab
 	protected function processVariable(PHP_CodeSniffer\Files\File $file, $stackPointer): void
 	{
 		$tokens = $file->getTokens();
+		assert(is_array($tokens[$stackPointer]) && is_string($tokens[$stackPointer]['content']));
+
 		$varName = ltrim($tokens[$stackPointer]['content'], '$');
 
 		if (in_array($varName, self::PHP_RESERVED_VARIABLES, TRUE)) {
@@ -37,6 +39,7 @@ final class ValidVariableNameSniff extends PHP_CodeSniffer\Sniffs\AbstractVariab
 		}
 
 		$objOperator = $file->findPrevious([T_WHITESPACE], ($stackPointer - 1), NULL, TRUE);
+		assert(is_array($tokens[$objOperator]));
 		if ($tokens[$objOperator]['code'] === T_DOUBLE_COLON) {
 			return; // skip MyClass::$variable, there might be no control over the declaration
 		}
