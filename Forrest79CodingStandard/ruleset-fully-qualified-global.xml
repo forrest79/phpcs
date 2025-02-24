@@ -138,6 +138,7 @@
 		<exclude name="SlevomatCodingStandard.Namespaces.UseOnlyWhitelistedNamespaces"/>
 		<exclude name="SlevomatCodingStandard.Numbers.RequireNumericLiteralSeparator.RequiredNumericLiteralSeparator"/>
 		<exclude name="SlevomatCodingStandard.TypeHints.DisallowMixedTypeHint.DisallowedMixedTypeHint"/>
+		<exclude name="SlevomatCodingStandard.TypeHints.UnionTypeHintFormat"/>
 
 		<!-- these don't support "else if" and raise an exception -->
 		<exclude name="SlevomatCodingStandard.ControlStructures.BlockControlStructureSpacing"/>
@@ -184,6 +185,14 @@
 			<property name="includeSpecialFunctions" value="true"/>
 		</properties>
 	</rule>
+	<rule ref="SlevomatCodingStandard.TypeHints.DNFTypeHintFormat">
+		<properties>
+			<property name="withSpacesAroundOperators" type="string" value="no"/>
+			<property name="withSpacesInsideParentheses" type="string" value="no"/>
+			<property name="shortNullable" type="string" value="no"/>
+			<property name="nullPosition" type="string" value="last"/>
+		</properties>
+	</rule>
 	<rule ref="SlevomatCodingStandard.TypeHints.DeclareStrictTypes">
 		<properties>
 			<property name="declareOnFirstLine" type="bool" value="true"/>
@@ -212,13 +221,6 @@
 			<property name="traversableTypeHints" type="array">
 				<element value="Traversable"/>
 			</property>
-		</properties>
-	</rule>
-	<rule ref="SlevomatCodingStandard.TypeHints.UnionTypeHintFormat">
-		<properties>
-			<property name="withSpaces" type="string" value="no"/>
-			<property name="shortNullable" type="string" value="no"/>
-			<property name="nullPosition" type="string" value="last"/>
 		</properties>
 	</rule>
 	<rule ref="Squiz.Arrays.ArrayBracketSpacing">
