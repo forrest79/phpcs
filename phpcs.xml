@@ -10,10 +10,10 @@
 
 	<rule ref="SlevomatCodingStandard.Files.TypeNameMatchesFileName">
 		<properties>
-			<property name="rootNamespaces" type="array" value="
-				Forrest79CodingStandard=>Forrest79CodingStandard,
-				tests=>Forrest79CodingStandard,
-			"/>
+			<property name="rootNamespaces" type="array">
+				<element key="Forrest79CodingStandard" value="Forrest79CodingStandard"/>
+				<element key="tests" value="Forrest79CodingStandard"/>
+			</property>
 		</properties>
 	</rule>
 </ruleset>

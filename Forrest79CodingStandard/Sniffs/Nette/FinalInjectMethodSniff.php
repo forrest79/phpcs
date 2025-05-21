@@ -44,7 +44,11 @@ final class FinalInjectMethodSniff implements PHP_CodeSniffer\Sniffs\Sniff
 			if ($firstModifier === FALSE) {
 				throw new \InvalidArgumentException('Can\'t find first modifier.');
 			}
+
 			$secondModifier = $phpcsFile->findPrevious(Tokens::$methodPrefixes, $firstModifier - 1);
+			if ($secondModifier === FALSE) {
+				throw new \InvalidArgumentException('Can\'t find second modifier.');
+			}
 
 			assert(is_array($tokens[$firstModifier]) && is_array($tokens[$secondModifier]));
 			return in_array(T_FINAL, [$tokens[$firstModifier]['code'], $tokens[$secondModifier]['code']], TRUE);
@@ -59,13 +63,21 @@ final class FinalInjectMethodSniff implements PHP_CodeSniffer\Sniffs\Sniff
 		if (!isset($this->isFinalClass[$phpcsFile->getFilename()])) {
 			$tokens = $phpcsFile->getTokens();
 			foreach ($tokens as $stackPointer => $token) {
-				assert(is_array($token));
+				assert(is_int($stackPointer) && is_array($token));
 
 				if ($token['code'] === T_CLASS) {
 					$previous = $phpcsFile->findPrevious(Tokens::$methodPrefixes, $stackPointer - 1);
 
-					assert(is_array($tokens[$previous]));
-					return $this->isFinalClass[$phpcsFile->getFilename()] = ($previous !== FALSE && $tokens[$previous]['code'] === T_FINAL);
+					if ($previous === FALSE) {
+						$isFinalClass = FALSE;
+					} else {
+						assert(is_array($tokens[$previous]));
+						$isFinalClass = $tokens[$previous]['code'] === T_FINAL;
+					}
+
+					$this->isFinalClass[$phpcsFile->getFilename()] = $isFinalClass;
+
+					return $isFinalClass;
 				}
 			}
 

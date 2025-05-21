@@ -39,7 +39,7 @@ final class ValidVariableNameSniff extends PHP_CodeSniffer\Sniffs\AbstractVariab
 		}
 
 		$objOperator = $file->findPrevious([T_WHITESPACE], ($stackPointer - 1), NULL, TRUE);
-		assert(is_array($tokens[$objOperator]));
+		assert(is_int($objOperator) && is_array($tokens[$objOperator]));
 		if ($tokens[$objOperator]['code'] === T_DOUBLE_COLON) {
 			return; // skip MyClass::$variable, there might be no control over the declaration
 		}

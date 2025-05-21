@@ -46,7 +46,7 @@ abstract class TestCase extends Tester\TestCase
 			/**
 			 * @inheritDoc
 			 */
-			public function register()
+			public function register(): array
 			{
 				return [T_CLASS];
 			}
@@ -55,7 +55,7 @@ abstract class TestCase extends Tester\TestCase
 			/**
 			 * @inheritDoc
 			 */
-			public function process(PHP_CodeSniffer\Files\File $phpcsFile, $stackPtr)
+			public function process(PHP_CodeSniffer\Files\File $phpcsFile, $stackPtr): void
 			{
 			}
 

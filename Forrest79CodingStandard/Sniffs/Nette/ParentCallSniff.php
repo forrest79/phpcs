@@ -36,6 +36,7 @@ final class ParentCallSniff implements PHP_CodeSniffer\Sniffs\Sniff
 
 	private function isRegistered(PHP_CodeSniffer\Files\File $phpcsFile, int $stackPointer): bool
 	{
+		assert(is_string($phpcsFile->getDeclarationName($stackPointer)));
 		return (bool) array_uintersect([$phpcsFile->getDeclarationName($stackPointer)], self::METHODS, 'strcasecmp');
 	}
 
