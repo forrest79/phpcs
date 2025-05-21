@@ -4,16 +4,18 @@ includes:
 
 parameters:
 	level: max
+
 	excludePaths:
 		- tests/*/data/*
+
 	scanDirectories:
 		- %rootDir%/../../squizlabs/php_codesniffer/src
-	ignoreErrors:
-		-
-			message: "#Parameter \\#3 \\$data_compare_func of function array_uintersect expects callable\\(mixed, mixed\\): int, 'strcasecmp' given\\.#"
-			path: %rootDir%/../../../Forrest79CodingStandard/Sniffs/Nette/ParentCallSniff.php
-			count: 1
 
+	# Bleeding edge
+	featureToggles:
+		internalTag: false
+
+	ignoreErrors:
 		# === PHPCS bad function definition ===
 
 		-
