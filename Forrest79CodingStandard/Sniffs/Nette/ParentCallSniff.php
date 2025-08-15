@@ -47,21 +47,21 @@ final class ParentCallSniff implements PHP_CodeSniffer\Sniffs\Sniff
 		$tokens = $phpcsFile->getTokens();
 		foreach (self::METHODS as $method) {
 			$openBracket = $phpcsFile->findNext([T_OPEN_CURLY_BRACKET => T_OPEN_CURLY_BRACKET], $stackPointer);
-			if ($openBracket === FALSE) {
+			if ($openBracket === false) {
 				throw new \InvalidArgumentException('Can\'t find open bracket.');
 			}
 
 			$closeBracket = $tokens[$openBracket]['bracket_closer'];
 
-			$bodyPointers = array_keys(array_slice($tokens, $openBracket, ($closeBracket - $openBracket) + 1, TRUE));
+			$bodyPointers = array_keys(array_slice($tokens, $openBracket, ($closeBracket - $openBracket) + 1, true));
 
 			foreach ($bodyPointers as $pointer) {
 				if ($this->hasParentCallTokens($tokens, $pointer, $method)) {
-					return TRUE;
+					return true;
 				}
 			}
 		}
-		return FALSE;
+		return false;
 	}
 
 

@@ -34,17 +34,17 @@ final class ValidVariableNameSniff extends PHP_CodeSniffer\Sniffs\AbstractVariab
 
 		$varName = ltrim($tokens[$stackPointer]['content'], '$');
 
-		if (in_array($varName, self::PHP_RESERVED_VARIABLES, TRUE)) {
+		if (in_array($varName, self::PHP_RESERVED_VARIABLES, true)) {
 			return; // skip PHP reserved vars
 		}
 
-		$objOperator = $file->findPrevious([T_WHITESPACE], ($stackPointer - 1), NULL, TRUE);
+		$objOperator = $file->findPrevious([T_WHITESPACE], ($stackPointer - 1), null, true);
 		assert(is_int($objOperator) && is_array($tokens[$objOperator]));
 		if ($tokens[$objOperator]['code'] === T_DOUBLE_COLON) {
 			return; // skip MyClass::$variable, there might be no control over the declaration
 		}
 
-		if (!PHP_CodeSniffer\Util\Common::isCamelCaps($varName, FALSE, TRUE, FALSE)) {
+		if (!PHP_CodeSniffer\Util\Common::isCamelCaps($varName, false, true, false)) {
 			$error = 'Variable "%s" is not in valid camel caps format';
 			$data = [$varName];
 			$file->addError($error, $stackPointer, self::CODE_CAMEL_CAPS, $data);

@@ -11,7 +11,7 @@ final class MethodStructureSniff implements PHP_CodeSniffer\Sniffs\Sniff
 {
 	public const CODE_ALPHABETICAL_ORDER = 'AlphabeticalOrder';
 
-	/** @var array<string> */
+	/** @var list<string> */
 	public array $checkFiles = [];
 
 
@@ -30,7 +30,7 @@ final class MethodStructureSniff implements PHP_CodeSniffer\Sniffs\Sniff
 	public function process(PHP_CodeSniffer\Files\File $phpcsFile, $stackPointer): void
 	{
 		foreach ($this->checkFiles as $file) {
-			if (substr($phpcsFile->getFilename(), -strlen($file)) === $file) {
+			if (str_ends_with($phpcsFile->getFilename(), $file)) {
 				$this->checkFile($phpcsFile, $stackPointer);
 				return;
 			}
@@ -44,8 +44,9 @@ final class MethodStructureSniff implements PHP_CodeSniffer\Sniffs\Sniff
 
 		$tokens = $phpcsFile->getTokens();
 
-		while (($stackPointer = $phpcsFile->findNext([T_FUNCTION], $stackPointer + 1)) !== FALSE) {
+		while (($stackPointer = $phpcsFile->findNext([T_FUNCTION], $stackPointer + 1)) !== false) {
 			assert(is_array($tokens[$stackPointer - 2]) && is_array($tokens[$stackPointer + 2]));
+
 			if (
 				$tokens[$stackPointer - 2]['code'] === T_PUBLIC
 				&& $tokens[$stackPointer + 2]['content'] !== '__construct'

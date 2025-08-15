@@ -38,7 +38,7 @@ final class ExceptionDeclarationSniff implements PHP_CodeSniffer\Sniffs\Sniff
 	public function process(PHP_CodeSniffer\Files\File $file, $classPointer): void
 	{
 		$extendedClassName = $file->findExtendedClassName($classPointer);
-		if ($extendedClassName === FALSE) {
+		if ($extendedClassName === false) {
 			return; //does not extend anything
 		}
 
@@ -92,7 +92,7 @@ final class ExceptionDeclarationSniff implements PHP_CodeSniffer\Sniffs\Sniff
 	private function checkThatExceptionIsChainable(PHP_CodeSniffer\Files\File $file, int $classPointer): void
 	{
 		$constructorPointer = $this->findConstructorMethodPointer($file, $classPointer);
-		if ($constructorPointer === NULL) {
+		if ($constructorPointer === null) {
 			return;
 		}
 
@@ -107,7 +107,7 @@ final class ExceptionDeclarationSniff implements PHP_CodeSniffer\Sniffs\Sniff
 		}
 		$lastArgument = array_pop($typeHints);
 
-		if ($lastArgument === NULL) {
+		if ($lastArgument === null) {
 			$file->addError(
 				'Exception is not chainable. It must have optional \Throwable as last constructor argument and has none.',
 				$constructorPointer,
@@ -117,14 +117,14 @@ final class ExceptionDeclarationSniff implements PHP_CodeSniffer\Sniffs\Sniff
 		}
 
 		$lastArgumentTypeHint = ltrim($lastArgument->getTypeHint(), '?');
-		if (StringHelper::endsWith(strtolower($lastArgumentTypeHint), '|null')) {
+		if (str_ends_with(strtolower($lastArgumentTypeHint), '|null')) {
 			$lastArgumentTypeHint = substr($lastArgumentTypeHint, 0, -5);
 		}
 
 		if (
 			$lastArgumentTypeHint !== '\Throwable'
-			&& !StringHelper::endsWith($lastArgumentTypeHint, 'Exception')
-			&& !StringHelper::endsWith($lastArgumentTypeHint, 'Error')
+			&& !str_ends_with($lastArgumentTypeHint, 'Exception')
+			&& !str_ends_with($lastArgumentTypeHint, 'Error')
 		) {
 			$file->addError(sprintf(
 				'Exception is not chainable. It must have optional \Throwable as last constructor argument and has "%s".',
@@ -135,17 +135,18 @@ final class ExceptionDeclarationSniff implements PHP_CodeSniffer\Sniffs\Sniff
 	}
 
 
-	private function findConstructorMethodPointer(PHP_CodeSniffer\Files\File $file, int $classPointer): int|NULL
+	private function findConstructorMethodPointer(PHP_CodeSniffer\Files\File $file, int $classPointer): int|null
 	{
 		$functionPointerToScan = $classPointer;
-		while (($functionPointer = TokenHelper::findNext($file, T_FUNCTION, $functionPointerToScan)) !== NULL) {
+		while (($functionPointer = TokenHelper::findNext($file, T_FUNCTION, $functionPointerToScan)) !== null) {
 			$functionName = FunctionHelper::getName($file, $functionPointer);
 			if ($functionName === '__construct') {
 				return $functionPointer;
 			}
 			$functionPointerToScan = $functionPointer + 1;
 		}
-		return NULL;
+
+		return null;
 	}
 
 }

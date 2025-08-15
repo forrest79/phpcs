@@ -140,12 +140,6 @@ For Nette Framework. In presenters, all `beforeRender` methods should call their
 
 For Nette Framework. In presenters, all `startup`, `beforeRender` and `createComponent` methods should be `protected`.
 
-### PHP\CorrectCaseTypeSniff
-
-#### Forrest79CodingStandard.PHP.CorrectCaseType
-
-Checks that all PHP types are lowercase except `NULL`, `TRUE` and `FALSE` that must be uppercase. Based on `Generic.PHP.LowerCaseTypeSniff`.
-
 
 ## General naming conventions
 
@@ -265,7 +259,7 @@ use ReflectionMethod;
 - Multiple types referenced in `implements` are separated with comma and one space and are ordered alphabetically.
 - Types referenced in code are always referenced using `Foo::class` syntax, never using a string.
 - If the referenced type in static access is the "current" one, `self`/`static` is used instead of type name.
-- If type can be null, always use `|NULL` not `?` - `string|NULL` instead of `?string`.
+- If type can be null, always use `|null` not `?` - `string|null` instead of `?string`.
 
 ### Interfaces
 
@@ -330,7 +324,7 @@ class Foo
 ### Argument list
 
 - There should be type hint defined whenever possible (including scalar type hints).
-   - Nullable types (`string|NULL`) are used to allow passing null to a type hinted argument. 
+   - Nullable types (`string|null`) are used to allow passing null to a type hinted argument. 
 - There is no space after the opening parenthesis, and there is no space before the closing parenthesis.
 - Arguments both in function declaration and in function call are separated with comma, followed by one space (`, `).
 
@@ -374,7 +368,7 @@ new X(
 ```
 
 - Default argument values are used only when needed to either express optional argument (only at the end of the list) or to allow passing null to a type hinted argument.
-   - Nullable types (`string|NULL`) are used to allow passing null to a type hinted argument and therefore default arguments are used only for optional arguments.
+   - Nullable types (`string|null`) are used to allow passing null to a type hinted argument and therefore default arguments are used only for optional arguments.
    - For scalar arguments default arguments are used only for optional arguments, not to allow passing nulls (see detailed example below).
 
 ```php
@@ -385,19 +379,19 @@ class X
 
 	/**
 	 * @param \Foo $a required type argument
-	 * @param \Foo|NULL $b required argument, but nullable type needed
+	 * @param \Foo|null $b required argument, but nullable type needed
 	 * @param string $c required scalar argument
-	 * @param string|NULL $d required argument with nullable scalar
+	 * @param string|null $d required argument with nullable scalar
 	 * @param string $e optional nullable scalar argument
-	 * @param string|NULL $f optional nullable scalar argument
+	 * @param string|null $f optional nullable scalar argument
 	 */
 	public function __construct(
 		Foo $a,
-		Foo|NULL $b,
+		Foo|null $b,
 		string $c,
-		string|NULL $d,
+		string|null $d,
 		string $e = '',
-		string|NULL $f = NULL
+		string|null $f = null
 	)
 	{
 		// ...
@@ -411,7 +405,7 @@ class X
 ### Return type
 
 - There should be type hint defined whenever possible (including scalar type hints).
-   - Nullable types (`string|NULL`) are used to allow returning null.
+   - Nullable types (`string|null`) are used to allow returning null.
 - There is no space after the closing parenthesis, colon immediately follows and then there is one space between the colon and the type.
 
 ```php
@@ -547,9 +541,9 @@ switch ($foo) {
 
 - After all operators, there is one space. Before operators, there is one space too, unless it is on the beginning of a line.
 - Logical operators `&&` and `||` are always used instead of `and` and `or`.
-- All keywords are lowercase, exceptions are `TRUE`, `FALSE` and `NULL`.
+- All keywords are lowercase, exceptions are `true`, `false` and `null`.
 - Strict comparisons are used by default (`===`), if there is need for `==`, usually a comment should be given explaining situation.
-   - Magic PHP type conversions should be avoided - WRONG: `($foo)`, CORRECT: `($foo !== NULL)` - only expressions already containing boolean values should be written in `($foo)` form.
+   - Magic PHP type conversions should be avoided - WRONG: `($foo)`, CORRECT: `($foo !== null)` - only expressions already containing boolean values should be written in `($foo)` form.
    - The same applies for `empty` function, so it is forbidden.
 - [Yoda conditions](http://en.wikipedia.org/wiki/Yoda_conditions) should not be used.
 - If expression needs to be written on multiple lines, operators belong on the beginning of the line.
@@ -559,7 +553,7 @@ switch ($foo) {
 
 if (
 	($lorem >= 3 && $lorem <= 5)
-	|| $ipsum !== NULL
+	|| $ipsum !== null
 ) {
 	// ...
 }
@@ -652,7 +646,7 @@ class LoremException extends Forrest79\PhpException
 	private strinf $lorem;
 
 
-	public function __construct(string $lorem, \Throwable $previous = NULL)
+	public function __construct(string $lorem, \Throwable $previous = null)
 	{
 		parent::__construct(sprintf('%s ipsum dolor sit amet', $lorem), $previous);
 		$this->lorem = $lorem;
@@ -810,10 +804,10 @@ use DateTimeImmutable;
 /**
  * @param DateTimeImmutable $date calendar date
  * @param array<string> $events
- * @param int|NULL $interval
+ * @param int|null $interval
  * @return DateTime
  */
-public function myMethod(DateTimeImmutable $date, array $events, int $interval = NULL): DateTime
+public function myMethod(DateTimeImmutable $date, array $events, int $interval = null): DateTime
 {
 	// ...
 }

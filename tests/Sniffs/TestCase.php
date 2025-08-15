@@ -13,7 +13,7 @@ abstract class TestCase extends Tester\TestCase
 		Tester\Environment::setup();
 
 		if (!defined('PHP_CODESNIFFER_CBF')) {
-			define('PHP_CODESNIFFER_CBF', FALSE);
+			define('PHP_CODESNIFFER_CBF', false);
 		}
 
 		parent::run();
@@ -97,7 +97,7 @@ abstract class TestCase extends Tester\TestCase
 		PHP_CodeSniffer\Files\File $resultFile,
 		int $line,
 		string $code,
-		string|NULL $message = NULL,
+		string|null $message = null,
 	): void
 	{
 		/** @var array<int, array<array<array{source: string, message: string}>>> $errors */
@@ -115,7 +115,7 @@ abstract class TestCase extends Tester\TestCase
 			sprintf(
 				'Expected code %s%s, but not found on line %s.%sErrors found on this line:%s%s%s',
 				$expectedCode,
-				($message !== NULL) ? sprintf(' with message "%s"', $message) : '',
+				($message !== null) ? sprintf(' with message "%s"', $message) : '',
 				$line,
 				PHP_EOL,
 				PHP_EOL,
@@ -129,20 +129,20 @@ abstract class TestCase extends Tester\TestCase
 	/**
 	 * @param array<array<array{source: string, message: string}>> $errorsForLine
 	 */
-	private function hasError(iterable $errorsForLine, string $code, string|NULL $message = NULL): bool
+	private function hasError(iterable $errorsForLine, string $code, string|null $message = null): bool
 	{
 		foreach ($errorsForLine as $errorsForPosition) {
 			foreach ($errorsForPosition as $error) {
 				if (
 					$error['source'] === $code
-					&& ($message === NULL || strpos($error['message'], $message) !== FALSE)
+					&& ($message === null || strpos($error['message'], $message) !== false)
 				) {
-					return TRUE;
+					return true;
 				}
 			}
 		}
 
-		return FALSE;
+		return false;
 	}
 
 
