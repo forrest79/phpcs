@@ -12,14 +12,14 @@
 	],
 	"require": {
 		"php": "^8.0",
-		"slevomat/coding-standard": "^8.20"
+		"slevomat/coding-standard": "^8.22"
 	},
 	"require-dev": {
 		"forrest79/phpcs-ignores": "^0.5",
 		"nette/tester": "^2.5",
 		"phpstan/phpstan": "^2.1",
 		"phpstan/phpstan-strict-rules": "^2.0",
-		"shipmonk/phpstan-rules": "^4.1"
+		"shipmonk/phpstan-rules": "^4.2"
 	},
 	"autoload": {
 		"psr-4": {
