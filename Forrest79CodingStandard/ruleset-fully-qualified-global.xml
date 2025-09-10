@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <ruleset name="Forrest79CodingStandard-FullyQualifiedGlobal">
 	<arg name="tab-width" value="4"/>
-	<config name="installed_paths" value="../../slevomat/coding-standard"/><!-- relative path from PHPCS source location -->
+	<config name="installed_paths" value="./../../slevomat/coding-standard"/><!-- relative path from PHPCS source location -->
 
 	<rule ref="Generic.Arrays.ArrayIndent">
 		<exclude name="Generic.Arrays.ArrayIndent.CloseBraceNotNewLine"/><!-- multiline items causes evaluation as multiline array https://github.com/squizlabs/PHP_CodeSniffer/issues/1791 -->
@@ -87,7 +87,7 @@
 	<rule ref="PSR2.Methods.FunctionClosingBrace"/>
 	<rule ref="PSR2.Methods.MethodDeclaration"/>
 	<rule ref="PSR2.Namespaces.UseDeclaration"/>
-	<rule ref="SlevomatCodingStandard/ruleset.xml">
+	<rule ref="SlevomatCodingStandard">
 		<exclude name="SlevomatCodingStandard.Arrays.AlphabeticallySortedByKeys.IncorrectKeyOrder"/>
 		<exclude name="SlevomatCodingStandard.Arrays.DisallowPartiallyKeyed.DisallowedPartiallyKeyed"/>
 		<exclude name="SlevomatCodingStandard.Attributes.AttributesOrder"/><!-- Fatal error in files with attributes... -->
