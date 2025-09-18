@@ -23,30 +23,26 @@ final class ParentCallSniff implements PHP_CodeSniffer\Sniffs\Sniff
 	}
 
 
-	/**
-	 * @inheritDoc
-	 */
-	public function process(PHP_CodeSniffer\Files\File $phpcsFile, $stackPointer): void
+	public function process(PHP_CodeSniffer\Files\File $phpcsFile, int $stackPtr): void
 	{
-		if ($this->isRegistered($phpcsFile, $stackPointer) && !$this->hasParentCall($phpcsFile, $stackPointer)) {
-			$phpcsFile->addError(sprintf('All the methods (%s) have to call parent::', implode(', ', self::METHODS)), $stackPointer, self::CODE_MISSING_PARENT);
+		if ($this->isRegistered($phpcsFile, $stackPtr) && !$this->hasParentCall($phpcsFile, $stackPtr)) {
+			$phpcsFile->addError(sprintf('All the methods (%s) have to call parent::', implode(', ', self::METHODS)), $stackPtr, self::CODE_MISSING_PARENT);
 		}
 	}
 
 
-	private function isRegistered(PHP_CodeSniffer\Files\File $phpcsFile, int $stackPointer): bool
+	private function isRegistered(PHP_CodeSniffer\Files\File $phpcsFile, int $stackPtr): bool
 	{
-		assert(is_string($phpcsFile->getDeclarationName($stackPointer)));
-		return (bool) array_uintersect([$phpcsFile->getDeclarationName($stackPointer)], self::METHODS, 'strcasecmp');
+		return (bool) array_uintersect([$phpcsFile->getDeclarationName($stackPtr)], self::METHODS, 'strcasecmp');
 	}
 
 
-	private function hasParentCall(PHP_CodeSniffer\Files\File $phpcsFile, int $stackPointer): bool
+	private function hasParentCall(PHP_CodeSniffer\Files\File $phpcsFile, int $stackPtr): bool
 	{
 		/** @var array<int, array{code: int|string, content: string, bracket_closer: int}> $tokens */
 		$tokens = $phpcsFile->getTokens();
 		foreach (self::METHODS as $method) {
-			$openBracket = $phpcsFile->findNext([T_OPEN_CURLY_BRACKET => T_OPEN_CURLY_BRACKET], $stackPointer);
+			$openBracket = $phpcsFile->findNext([T_OPEN_CURLY_BRACKET => T_OPEN_CURLY_BRACKET], $stackPtr);
 			if ($openBracket === false) {
 				throw new \InvalidArgumentException('Can\'t find open bracket.');
 			}

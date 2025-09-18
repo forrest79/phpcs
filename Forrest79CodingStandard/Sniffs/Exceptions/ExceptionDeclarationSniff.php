@@ -5,7 +5,6 @@ namespace Forrest79CodingStandard\Sniffs\Exceptions;
 use PHP_CodeSniffer;
 use SlevomatCodingStandard\Helpers\ClassHelper;
 use SlevomatCodingStandard\Helpers\FunctionHelper;
-use SlevomatCodingStandard\Helpers\StringHelper;
 use SlevomatCodingStandard\Helpers\TokenHelper;
 
 /**
@@ -32,43 +31,40 @@ final class ExceptionDeclarationSniff implements PHP_CodeSniffer\Sniffs\Sniff
 	}
 
 
-	/**
-	 * @inheritDoc
-	 */
-	public function process(PHP_CodeSniffer\Files\File $file, $classPointer): void
+	public function process(PHP_CodeSniffer\Files\File $phpcsFile, int $stackPtr): void
 	{
-		$extendedClassName = $file->findExtendedClassName($classPointer);
+		$extendedClassName = $phpcsFile->findExtendedClassName($stackPtr);
 		if ($extendedClassName === false) {
 			return; //does not extend anything
 		}
 
-		if (!StringHelper::endsWith($extendedClassName, 'Exception')) {
+		if (!str_ends_with($extendedClassName, 'Exception')) {
 			return; // does not extend Exception, is not an exception
 		}
 
-		$this->checkExceptionName($file, $classPointer);
+		$this->checkExceptionName($phpcsFile, $stackPtr);
 
-		$this->checkExceptionDirectoryName($file, $classPointer);
+		$this->checkExceptionDirectoryName($phpcsFile, $stackPtr);
 
-		$this->checkThatExceptionIsChainable($file, $classPointer);
+		$this->checkThatExceptionIsChainable($phpcsFile, $stackPtr);
 	}
 
 
-	private function checkExceptionName(PHP_CodeSniffer\Files\File $file, int $classPointer): void
+	private function checkExceptionName(PHP_CodeSniffer\Files\File $phpcsFile, int $stackPtr): void
 	{
-		$className = ClassHelper::getName($file, $classPointer);
-		if (!StringHelper::endsWith($className, 'Exception')) {
-			$file->addError(sprintf(
+		$className = ClassHelper::getName($phpcsFile, $stackPtr);
+		if (!str_ends_with($className, 'Exception')) {
+			$phpcsFile->addError(sprintf(
 				'Exception class name "%s" must end with "Exception".',
 				$className,
-			), $classPointer, self::CODE_NOT_ENDING_WITH_EXCEPTION);
+			), $stackPtr, self::CODE_NOT_ENDING_WITH_EXCEPTION);
 		}
 	}
 
 
-	private function checkExceptionDirectoryName(PHP_CodeSniffer\Files\File $file, int $classPointer): void
+	private function checkExceptionDirectoryName(PHP_CodeSniffer\Files\File $phpcsFile, int $stackPtr): void
 	{
-		$filename = $file->getFilename();
+		$filename = $phpcsFile->getFilename();
 
 		// normalize path for Windows (PHP_CodeSniffer detects it with backslashes on Windows)
 		$filename = str_replace('\\', '/', $filename);
@@ -79,26 +75,26 @@ final class ExceptionDeclarationSniff implements PHP_CodeSniffer\Sniffs\Sniff
 		$exceptionDirectoryName = array_pop($pathSegments);
 
 		if ($exceptionDirectoryName !== $this->exceptionsDirectoryName) {
-			$file->addError(sprintf(
+			$phpcsFile->addError(sprintf(
 				'Exception file "%s" must be placed in "%s" directory (is in "%s").',
 				$pathInfo['basename'],
 				$this->exceptionsDirectoryName,
 				$exceptionDirectoryName,
-			), $classPointer, self::CODE_INCORRECT_EXCEPTION_DIRECTORY);
+			), $stackPtr, self::CODE_INCORRECT_EXCEPTION_DIRECTORY);
 		}
 	}
 
 
-	private function checkThatExceptionIsChainable(PHP_CodeSniffer\Files\File $file, int $classPointer): void
+	private function checkThatExceptionIsChainable(PHP_CodeSniffer\Files\File $phpcsFile, int $stackPtr): void
 	{
-		$constructorPointer = $this->findConstructorMethodPointer($file, $classPointer);
+		$constructorPointer = $this->findConstructorMethodPointer($phpcsFile, $stackPtr);
 		if ($constructorPointer === null) {
 			return;
 		}
 
-		$typeHints = FunctionHelper::getParametersTypeHints($file, $constructorPointer);
+		$typeHints = FunctionHelper::getParametersTypeHints($phpcsFile, $constructorPointer);
 		if (count($typeHints) === 0) {
-			$file->addError(
+			$phpcsFile->addError(
 				'Exception is not chainable. It must have optional \Throwable as last constructor argument.',
 				$constructorPointer,
 				self::CODE_NOT_CHAINABLE,
@@ -108,7 +104,7 @@ final class ExceptionDeclarationSniff implements PHP_CodeSniffer\Sniffs\Sniff
 		$lastArgument = array_pop($typeHints);
 
 		if ($lastArgument === null) {
-			$file->addError(
+			$phpcsFile->addError(
 				'Exception is not chainable. It must have optional \Throwable as last constructor argument and has none.',
 				$constructorPointer,
 				self::CODE_NOT_CHAINABLE,
@@ -126,20 +122,19 @@ final class ExceptionDeclarationSniff implements PHP_CodeSniffer\Sniffs\Sniff
 			&& !str_ends_with($lastArgumentTypeHint, 'Exception')
 			&& !str_ends_with($lastArgumentTypeHint, 'Error')
 		) {
-			$file->addError(sprintf(
+			$phpcsFile->addError(sprintf(
 				'Exception is not chainable. It must have optional \Throwable as last constructor argument and has "%s".',
 				$lastArgument->getTypeHint(),
 			), $constructorPointer, self::CODE_NOT_CHAINABLE);
-			return;
 		}
 	}
 
 
-	private function findConstructorMethodPointer(PHP_CodeSniffer\Files\File $file, int $classPointer): int|null
+	private function findConstructorMethodPointer(PHP_CodeSniffer\Files\File $phpcsFile, int $stackPtr): int|null
 	{
-		$functionPointerToScan = $classPointer;
-		while (($functionPointer = TokenHelper::findNext($file, T_FUNCTION, $functionPointerToScan)) !== null) {
-			$functionName = FunctionHelper::getName($file, $functionPointer);
+		$functionPointerToScan = $stackPtr;
+		while (($functionPointer = TokenHelper::findNext($phpcsFile, T_FUNCTION, $functionPointerToScan)) !== null) {
+			$functionName = FunctionHelper::getName($phpcsFile, $functionPointer);
 			if ($functionName === '__construct') {
 				return $functionPointer;
 			}

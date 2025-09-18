@@ -24,21 +24,18 @@ final class ValidVariableNameSniff extends PHP_CodeSniffer\Sniffs\AbstractVariab
 	];
 
 
-	/**
-	 * @inheritDoc
-	 */
-	protected function processVariable(PHP_CodeSniffer\Files\File $file, $stackPointer): void
+	protected function processVariable(PHP_CodeSniffer\Files\File $phpcsFile, int $stackPtr): void
 	{
-		$tokens = $file->getTokens();
-		assert(is_array($tokens[$stackPointer]) && is_string($tokens[$stackPointer]['content']));
+		$tokens = $phpcsFile->getTokens();
+		assert(is_array($tokens[$stackPtr]) && is_string($tokens[$stackPtr]['content']));
 
-		$varName = ltrim($tokens[$stackPointer]['content'], '$');
+		$varName = ltrim($tokens[$stackPtr]['content'], '$');
 
 		if (in_array($varName, self::PHP_RESERVED_VARIABLES, true)) {
 			return; // skip PHP reserved vars
 		}
 
-		$objOperator = $file->findPrevious([T_WHITESPACE], ($stackPointer - 1), null, true);
+		$objOperator = $phpcsFile->findPrevious([T_WHITESPACE], ($stackPtr - 1), null, true);
 		assert(is_int($objOperator) && is_array($tokens[$objOperator]));
 		if ($tokens[$objOperator]['code'] === T_DOUBLE_COLON) {
 			return; // skip MyClass::$variable, there might be no control over the declaration
@@ -47,24 +44,18 @@ final class ValidVariableNameSniff extends PHP_CodeSniffer\Sniffs\AbstractVariab
 		if (!PHP_CodeSniffer\Util\Common::isCamelCaps($varName, false, true, false)) {
 			$error = 'Variable "%s" is not in valid camel caps format';
 			$data = [$varName];
-			$file->addError($error, $stackPointer, self::CODE_CAMEL_CAPS, $data);
+			$phpcsFile->addError($error, $stackPtr, self::CODE_CAMEL_CAPS, $data);
 		}
 	}
 
 
-	/**
-	 * @inheritDoc
-	 */
-	protected function processMemberVar(PHP_CodeSniffer\Files\File $file, $stackPointer): void
+	protected function processMemberVar(PHP_CodeSniffer\Files\File $phpcsFile, int $stackPtr): void
 	{
 		// handled by PSR2.Classes.PropertyDeclaration
 	}
 
 
-	/**
-	 * @inheritDoc
-	 */
-	protected function processVariableInString(PHP_CodeSniffer\Files\File $file, $stackPointer): void
+	protected function processVariableInString(PHP_CodeSniffer\Files\File $phpcsFile, int $stackPtr): void
 	{
 		// Consistence standard does not allow variables in strings, handled by Squiz.Strings.DoubleQuoteUsage
 	}

@@ -12,7 +12,7 @@ final class FinalInjectMethodSniff implements PHP_CodeSniffer\Sniffs\Sniff
 {
 	public const CODE_MISSING_FINAL = 'MissingFinal';
 
-	/** @var array<bool> */
+	/** @var array<string, bool> */
 	private array $isFinalClass = [];
 
 
@@ -25,27 +25,24 @@ final class FinalInjectMethodSniff implements PHP_CodeSniffer\Sniffs\Sniff
 	}
 
 
-	/**
-	 * @inheritDoc
-	 */
-	public function process(PHP_CodeSniffer\Files\File $phpcsFile, $stackPointer): void
+	public function process(PHP_CodeSniffer\Files\File $phpcsFile, int $stackPtr): void
 	{
-		if (!$this->isFinalClass($phpcsFile) && !$this->isFinalInjectMethod($phpcsFile, $stackPointer)) {
-			$phpcsFile->addError('Non final presenter class must have final inject methods', $stackPointer, self::CODE_MISSING_FINAL);
+		if (!$this->isFinalClass($phpcsFile) && !$this->isFinalInjectMethod($phpcsFile, $stackPtr)) {
+			$phpcsFile->addError('Non final presenter class must have final inject methods', $stackPtr, self::CODE_MISSING_FINAL);
 		}
 	}
 
 
-	private function isFinalInjectMethod(PHP_CodeSniffer\Files\File $phpcsFile, int $stackPointer): bool
+	private function isFinalInjectMethod(PHP_CodeSniffer\Files\File $phpcsFile, int $stackPtr): bool
 	{
 		$tokens = $phpcsFile->getTokens();
-		if (preg_match('~^inject[A-Z]{1}.+~', (string) $phpcsFile->getDeclarationName($stackPointer)) === 1) {
-			$firstModifier = $phpcsFile->findPrevious(Tokens::$methodPrefixes, $stackPointer - 1);
+		if (preg_match('~^inject[A-Z]{1}.+~', $phpcsFile->getDeclarationName($stackPtr)) === 1) {
+			$firstModifier = $phpcsFile->findPrevious(Tokens::METHOD_MODIFIERS, $stackPtr - 1);
 			if ($firstModifier === false) {
 				throw new \InvalidArgumentException('Can\'t find first modifier.');
 			}
 
-			$secondModifier = $phpcsFile->findPrevious(Tokens::$methodPrefixes, $firstModifier - 1);
+			$secondModifier = $phpcsFile->findPrevious(Tokens::METHOD_MODIFIERS, $firstModifier - 1);
 			if ($secondModifier === false) {
 				throw new \InvalidArgumentException('Can\'t find second modifier.');
 			}
@@ -66,7 +63,7 @@ final class FinalInjectMethodSniff implements PHP_CodeSniffer\Sniffs\Sniff
 				assert(is_int($stackPointer) && is_array($token));
 
 				if ($token['code'] === T_CLASS) {
-					$previous = $phpcsFile->findPrevious(Tokens::$methodPrefixes, $stackPointer - 1);
+					$previous = $phpcsFile->findPrevious(Tokens::METHOD_MODIFIERS, $stackPointer - 1);
 
 					if ($previous === false) {
 						$isFinalClass = false;

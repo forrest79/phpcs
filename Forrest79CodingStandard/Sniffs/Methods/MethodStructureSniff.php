@@ -24,35 +24,32 @@ final class MethodStructureSniff implements PHP_CodeSniffer\Sniffs\Sniff
 	}
 
 
-	/**
-	 * @inheritDoc
-	 */
-	public function process(PHP_CodeSniffer\Files\File $phpcsFile, $stackPointer): void
+	public function process(PHP_CodeSniffer\Files\File $phpcsFile, int $stackPtr): void
 	{
 		foreach ($this->checkFiles as $file) {
 			if (str_ends_with($phpcsFile->getFilename(), $file)) {
-				$this->checkFile($phpcsFile, $stackPointer);
+				$this->checkFile($phpcsFile, $stackPtr);
 				return;
 			}
 		}
 	}
 
 
-	private function checkFile(PHP_CodeSniffer\Files\File $phpcsFile, int $stackPointer): void
+	private function checkFile(PHP_CodeSniffer\Files\File $phpcsFile, int $stackPtr): void
 	{
 		$methods = [];
 
 		$tokens = $phpcsFile->getTokens();
 
-		while (($stackPointer = $phpcsFile->findNext([T_FUNCTION], $stackPointer + 1)) !== false) {
-			assert(is_array($tokens[$stackPointer - 2]) && is_array($tokens[$stackPointer + 2]));
+		while (($stackPtr = $phpcsFile->findNext([T_FUNCTION], $stackPtr + 1)) !== false) {
+			assert(is_array($tokens[$stackPtr - 2]) && is_array($tokens[$stackPtr + 2]));
 
 			if (
-				$tokens[$stackPointer - 2]['code'] === T_PUBLIC
-				&& $tokens[$stackPointer + 2]['content'] !== '__construct'
+				$tokens[$stackPtr - 2]['code'] === T_PUBLIC
+				&& $tokens[$stackPtr + 2]['content'] !== '__construct'
 			) {
-				assert(is_string($tokens[$stackPointer + 2]['content']));
-				$methods[] = $tokens[$stackPointer + 2]['content'];
+				assert(is_string($tokens[$stackPtr + 2]['content']));
+				$methods[] = $tokens[$stackPtr + 2]['content'];
 			}
 		}
 

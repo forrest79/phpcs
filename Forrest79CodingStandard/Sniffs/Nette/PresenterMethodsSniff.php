@@ -27,27 +27,24 @@ final class PresenterMethodsSniff implements PHP_CodeSniffer\Sniffs\Sniff
 	}
 
 
-	/**
-	 * @inheritDoc
-	 */
-	public function process(PHP_CodeSniffer\Files\File $phpcsFile, $stackPointer): void
+	public function process(PHP_CodeSniffer\Files\File $phpcsFile, int $stackPtr): void
 	{
-		if ($this->isRegistered($phpcsFile, $stackPointer) && $this->isPublic($phpcsFile, $stackPointer)) {
-			$phpcsFile->addError(sprintf('Method "%s" is not allowed to be public', $phpcsFile->getDeclarationName($stackPointer)), $stackPointer, self::CODE_NOT_PROTECTED);
+		if ($this->isRegistered($phpcsFile, $stackPtr) && $this->isPublic($phpcsFile, $stackPtr)) {
+			$phpcsFile->addError(sprintf('Method "%s" is not allowed to be public', $phpcsFile->getDeclarationName($stackPtr)), $stackPtr, self::CODE_NOT_PROTECTED);
 		}
 	}
 
 
-	private function isPublic(PHP_CodeSniffer\Files\File $phpcsFile, int $stackPointer): bool
+	private function isPublic(PHP_CodeSniffer\Files\File $phpcsFile, int $stackPtr): bool
 	{
-		['scope' => $scope] = $phpcsFile->getMethodProperties($stackPointer);
+		['scope' => $scope] = $phpcsFile->getMethodProperties($stackPtr);
 		return $scope === 'public';
 	}
 
 
-	private function isRegistered(PHP_CodeSniffer\Files\File $phpcsFile, int $stackPointer): bool
+	private function isRegistered(PHP_CodeSniffer\Files\File $phpcsFile, int $stackPtr): bool
 	{
-		return preg_match(sprintf('~^(%s)$~', implode('|', self::METHODS)), (string) $phpcsFile->getDeclarationName($stackPointer)) === 1;
+		return preg_match(sprintf('~^(%s)$~', implode('|', self::METHODS)), $phpcsFile->getDeclarationName($stackPtr)) === 1;
 	}
 
 }

@@ -1,13 +1,13 @@
 ignoreErrors:
 	-
 		sniff: SlevomatCodingStandard.Functions.UnusedParameter.UnusedParameter
-		message: Unused parameter $file.
+		message: Unused parameter $phpcsFile.
 		count: 2
 		path: Forrest79CodingStandard/Sniffs/NamingConventions/ValidVariableNameSniff.php
 
 	-
 		sniff: SlevomatCodingStandard.Functions.UnusedParameter.UnusedParameter
-		message: Unused parameter $stackPointer.
+		message: Unused parameter $stackPtr.
 		count: 2
 		path: Forrest79CodingStandard/Sniffs/NamingConventions/ValidVariableNameSniff.php
 

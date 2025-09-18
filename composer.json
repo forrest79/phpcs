@@ -11,11 +11,11 @@
 		}
 	],
 	"require": {
-		"php": "^8.0",
-		"slevomat/coding-standard": "^8.22"
+		"php": "^8.2",
+		"slevomat/coding-standard": "^8.23"
 	},
 	"require-dev": {
-		"forrest79/phpcs-ignores": "^0.5",
+		"forrest79/phpcs-ignores": "^0.6",
 		"nette/tester": "^2.5",
 		"phpstan/phpstan": "^2.1",
 		"phpstan/phpstan-strict-rules": "^2.0",
@@ -34,7 +34,7 @@
 	"scripts": {
 		"tests": "tests/run-tests tests",
 		"coverage": "tests/collect-coverage tests",
-		"phpcs": "vendor/bin/phpcs --bootstrap=vendor/forrest79/phpcs-ignores/src/bootstrap-outdated.php --ignore=tests/*/data/* -s Forrest79CodingStandard tests",
+		"phpcs": "vendor/bin/phpcs --bootstrap=vendor/forrest79/phpcs-ignores/src/bootstrap-outdated.php --ignore=tests/*/data/* -q -s Forrest79CodingStandard tests",
 		"phpstan": "vendor/bin/phpstan analyse Forrest79CodingStandard tests"
 	},
 	"config": {
