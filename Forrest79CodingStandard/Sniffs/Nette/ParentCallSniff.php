@@ -9,9 +9,9 @@ use PHP_CodeSniffer;
  */
 final class ParentCallSniff implements PHP_CodeSniffer\Sniffs\Sniff
 {
-	public const CODE_MISSING_PARENT = 'MissingParent';
+	public const string CODE_MISSING_PARENT = 'MissingParent';
 
-	private const METHODS = ['beforeRender'];
+	private const array METHODS = ['beforeRender', 'afterRender'];
 
 
 	/**

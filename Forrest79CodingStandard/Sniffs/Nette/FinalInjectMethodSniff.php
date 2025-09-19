@@ -10,7 +10,7 @@ use PHP_CodeSniffer\Util\Tokens;
  */
 final class FinalInjectMethodSniff implements PHP_CodeSniffer\Sniffs\Sniff
 {
-	public const CODE_MISSING_FINAL = 'MissingFinal';
+	public const string CODE_MISSING_FINAL = 'MissingFinal';
 
 	/** @var array<string, bool> */
 	private array $isFinalClass = [];

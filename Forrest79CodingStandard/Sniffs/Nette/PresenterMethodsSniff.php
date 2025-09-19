@@ -9,9 +9,9 @@ use PHP_CodeSniffer;
  */
 final class PresenterMethodsSniff implements PHP_CodeSniffer\Sniffs\Sniff
 {
-	public const CODE_NOT_PROTECTED = 'NotProtected';
+	public const string CODE_NOT_PROTECTED = 'NotProtected';
 
-	private const METHODS = [
+	private const array METHODS = [
 		'beforeRender',
 		'startup',
 		'createComponent[A-Z].+',

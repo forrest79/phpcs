@@ -9,9 +9,9 @@ use PHP_CodeSniffer;
  */
 final class ValidVariableNameSniff extends PHP_CodeSniffer\Sniffs\AbstractVariableSniff
 {
-	public const CODE_CAMEL_CAPS = 'NotCamelCaps';
+	public const string CODE_CAMEL_CAPS = 'NotCamelCaps';
 
-	private const PHP_RESERVED_VARIABLES = [
+	private const array PHP_RESERVED_VARIABLES = [
 		'_SERVER',
 		'_GET',
 		'_POST',

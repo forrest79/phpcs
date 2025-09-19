@@ -12,9 +12,9 @@ use SlevomatCodingStandard\Helpers\TokenHelper;
  */
 final class ExceptionDeclarationSniff implements PHP_CodeSniffer\Sniffs\Sniff
 {
-	public const CODE_NOT_ENDING_WITH_EXCEPTION = 'NotEndingWithException';
-	public const CODE_NOT_CHAINABLE = 'NotChainable';
-	public const CODE_INCORRECT_EXCEPTION_DIRECTORY = 'IncorrectExceptionDirectory';
+	public const string CODE_NOT_ENDING_WITH_EXCEPTION = 'NotEndingWithException';
+	public const string CODE_NOT_CHAINABLE = 'NotChainable';
+	public const string CODE_INCORRECT_EXCEPTION_DIRECTORY = 'IncorrectExceptionDirectory';
 
 	public string $exceptionsDirectoryName = 'Exceptions';
 

@@ -9,7 +9,7 @@ use PHP_CodeSniffer;
  */
 final class MethodStructureSniff implements PHP_CodeSniffer\Sniffs\Sniff
 {
-	public const CODE_ALPHABETICAL_ORDER = 'AlphabeticalOrder';
+	public const string CODE_ALPHABETICAL_ORDER = 'AlphabeticalOrder';
 
 	/** @var list<string> */
 	public array $checkFiles = [];
