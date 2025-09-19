@@ -28,7 +28,7 @@ final class ParentCallSniffTest extends Sniffs\TestCase
 			$resultFile,
 			8,
 			ParentCallSniff::CODE_MISSING_PARENT,
-			'All the methods (beforeRender) have to call parent::',
+			'All the methods (beforeRender, afterRender) have to call parent::',
 		);
 	}
 

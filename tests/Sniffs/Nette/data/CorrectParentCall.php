@@ -10,4 +10,10 @@ class CorrectParentCall extends ParentCall
 		parent::beforeRender();
 	}
 
+
+	protected function afterRender(): void
+	{
+		parent::afterRender();
+	}
+
 }

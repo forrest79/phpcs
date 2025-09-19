@@ -9,4 +9,9 @@ class IncorrectParentCall extends ParentCall
 	{
 	}
 
+
+	protected function afterRender(): void
+	{
+	}
+
 }
