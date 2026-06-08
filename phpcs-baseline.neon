@@ -1,0 +1,6 @@
+ignoreErrors:
+	-
+		sniff: Squiz.Commenting.FunctionComment.MissingParamName
+		message: Missing parameter name
+		count: 1
+		path: Forrest79CodingStandard/Sniffs/Nette/ParentCallSniff.php
